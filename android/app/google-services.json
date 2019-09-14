@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1052658139161",
+    "firebase_url": "https://poppop-57184.firebaseio.com",
+    "project_id": "poppop-57184",
+    "storage_bucket": "poppop-57184.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1052658139161:android:1f1787be2cac048e",
+        "android_client_info": {
+          "package_name": "com.example.poppop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1052658139161-f66qs04nv4qqi2v0lm885ndagsjpp1si.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.poppop",
+            "certificate_hash": "99824598c8e9209d775f56f86489ad21d8a47449"
+          }
+        },
+        {
+          "client_id": "1052658139161-sd2t1dhoj4bdt3h1i3t8234t975ovbot.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALwRJBXACtCnhLgqsP-9oFyFvAT5-ekm4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1052658139161-sd2t1dhoj4bdt3h1i3t8234t975ovbot.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
