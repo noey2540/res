@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Homepage'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -57,6 +58,23 @@ class _MyHomePageState extends State<MyHomePage> {
           
         ],
       ),
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[ 
+            DrawerHeader(child: Text('ส่วนของผู้ส่งสินค้า',style: TextStyle(fontSize: 18,color: Colors.black) )),
+            Column(crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Column(children: <Widget>[ 
+                  FlatButton.icon(
+                    //onPressed: () => navigateToSecondPage(),
+                    icon: Icon(Icons.location_on,color: Colors.blue,size: 35,),
+                    label: Text("Login",
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16))),
+                   ], ),
+                //Container(margin: EdgeInsets.only(left: 0)),
+              ],)
+            // ListTile(title: Text('ช่วยเหลือ',style: TextStyle(fontSize: 20,color: Colors.black)),),
+          ],),)
     );
   }
 }

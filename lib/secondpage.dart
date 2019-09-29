@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:poppop/menupage.dart';
 
 
 
@@ -46,6 +47,17 @@ class _SecondPageState extends State<SecondPage> {
                           // }));
                           },
                         ),
+                        ButtonTheme.bar( // make buttons use the appropriate styles for cards
+                          child: ButtonBar(
+                            children: <Widget>[
+                              FlatButton(
+                                child: const Text('MENU'),
+                                onPressed: () {navigateToMenuPage(context, document.documentID );},
+                              ),
+                             
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -56,4 +68,10 @@ class _SecondPageState extends State<SecondPage> {
       },
     ));
 }
+}
+
+navigateToMenuPage(BuildContext context, String docID) {
+  Navigator.push(context, MaterialPageRoute(builder: (context) {
+    return MenuPage(docID: docID);
+  }));
 }
