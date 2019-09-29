@@ -4,7 +4,7 @@ import 'package:poppop/secondpage.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -36,72 +36,25 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ListView(
         children: <Widget>[
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Row(children: <Widget>[
-                  FlatButton.icon(
-                      onPressed: () => navigateToSecondPage(context),
-                      icon: Icon(Icons.location_on),
-                      label: Text("ค้นหาร้านอาหาร",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20))),
-                  FlatButton.icon(
-                      onPressed: () => navigateToSecondPage(context),
-                      icon: Icon(Icons.local_dining),
-                      label: Text("โปรโมชั่น",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20))),
-                ]),
-                Container(margin: EdgeInsets.only(left: 0),)
-              ]),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Row(children: <Widget>[
-                  FlatButton.icon(
-                      onPressed: () => navigateToSecondPage(context),
-                      icon: Icon(Icons.grade),
-                      label: Text("ร้านแนะนำ",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20))),
-                  FlatButton.icon(
-                      onPressed: () => navigateToSecondPage(context),
-                      icon: Icon(Icons.fastfood),
-                      label: Text("เมนูยอดฮิต",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20))),
-                ]),
-                Container(margin: EdgeInsets.only(left: 0),)
-              ]),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Row(children: <Widget>[
-                  FlatButton.icon(
-                      onPressed: () => navigateToSecondPage(context),
-                      icon: Icon(Icons.contact_phone),
-                      label: Text("ติดต่อเรา",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20))),
-                  FlatButton.icon(
-                      onPressed: () => navigateToSecondPage(context),
-                      icon: Icon(Icons.settings),
-                      label: Text("Admin",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20))),
-                ]),
-                Container(margin: EdgeInsets.only(left: 0),)
-              ]),
-
+            DropdownButton<String>(
+              
+              onChanged: (String newValue)  {
+                print(newValue);
+                navigateToSecondPage(context,newValue);
+              },
+              items: <String>['ปิ้งย่าง', 'ร้านอาหาร', 'ร้านส้มตำ', 'ร้านกาแฟ','ร้านน้ำชา']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+              
+            ),
           titleSection,
           title2Section,
           title3Section,
-          header4Section,
-          FlatButton(
-              color: Colors.red[300],
-              child: Text("Next", style: TextStyle(color: Colors.white)),
-              onPressed: () => navigateToSecondPage(context))
+          
         ],
       ),
     );
@@ -240,15 +193,7 @@ Card _build2CardListView3() {
   );
 }
 
-Widget header4Section = Row(
-  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  children: <Widget>[
-    _build3ButtonColumn(icon: Icons.alternate_email),
-    _build3ButtonColumn(icon: Icons.phone),
-    _build3ButtonColumn(icon: Icons.mail),
-    _build3ButtonColumn(icon: Icons.location_on)
-  ],
-);
+
 
 Column _build3ButtonColumn({IconData icon, String label}) {
   var icColor = Colors.blue.shade900;
@@ -263,8 +208,8 @@ Column _build3ButtonColumn({IconData icon, String label}) {
   );
 }
 
-navigateToSecondPage(BuildContext context) {
+navigateToSecondPage(BuildContext context, String category) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return MySecondPage();
+    return SecondPage(category: category);
   }));
 }
