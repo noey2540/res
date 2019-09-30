@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poppop/secondpage.dart';
+import 'package:poppop/loginpage.dart';
 
 void main() => runApp(MyApp());
 
@@ -61,14 +62,14 @@ class _MyHomePageState extends State<MyHomePage> {
       drawer: Drawer(
         child: ListView(
           children: <Widget>[ 
-            DrawerHeader(child: Text('ส่วนของผู้ส่งสินค้า',style: TextStyle(fontSize: 18,color: Colors.black) )),
+            DrawerHeader(child: Text('ส่วนของผู้ส่งสินค้า',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: Colors.black) )),
             Column(crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Column(children: <Widget>[ 
                   FlatButton.icon(
-                    //onPressed: () => navigateToSecondPage(),
-                    icon: Icon(Icons.location_on,color: Colors.blue,size: 35,),
-                    label: Text("Login",
+                    onPressed: () {navigateToLoginPage(context);},
+                    icon: Icon(Icons.supervisor_account,color: Colors.green,size: 35,),
+                    label: Text("เข้าสู่ระบบ",
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16))),
                    ], ),
                 //Container(margin: EdgeInsets.only(left: 0)),
@@ -229,5 +230,10 @@ Column _build3ButtonColumn({IconData icon, String label}) {
 navigateToSecondPage(BuildContext context, String category) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
     return SecondPage(category: category);
+  }));
+}
+navigateToLoginPage(BuildContext context) {
+  Navigator.push(context, MaterialPageRoute(builder: (context) {
+    return LoginPage();
   }));
 }

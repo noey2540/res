@@ -21,7 +21,7 @@ class _MenuPageState extends State<MenuPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blue[300],
-          title: Text(widget.docID),
+          title: Text('เมนูอาหาร'),
         ),
         body: StreamBuilder<QuerySnapshot>(
       stream: Firestore.instance.collection('menus').where('store_id', isEqualTo: widget.docID ).snapshots(),

@@ -38,7 +38,7 @@ class _SecondPageState extends State<SecondPage> {
                       children: <Widget>[
                          ListTile(
                           leading: Icon(Icons.location_on),
-                          title: Text(document['store_name']),
+                          title: Text(document['store_name'],style: TextStyle(fontSize: 20,color: Colors.black) ),
                           subtitle: Image.network(document["image"][0]),
                           onTap: () {
                             print(document['location'][0]);
