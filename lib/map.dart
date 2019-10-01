@@ -21,7 +21,7 @@ class _MapState extends State<Map> {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Maps Sample App'),
-          backgroundColor: Colors.green[700],
+          backgroundColor: Colors.green[300],
         ),
         body: GoogleMap(
           onMapCreated: _onMapCreated,

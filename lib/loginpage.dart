@@ -37,12 +37,14 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
+
                       buildTextFieldUser(),
                       buildTextFieldPass(),
                       buildButtonSignIn(),
                     ],
                   )),
-            )));
+            ))
+            );
 }
 
 Container buildTextFieldUser() {
@@ -77,6 +79,7 @@ Container buildButtonSignIn() {
         margin: EdgeInsets.only(top: 16),
         padding: EdgeInsets.all(12));
   }
+
 }
 
 navigateToSubmitOrderPage(BuildContext context) {

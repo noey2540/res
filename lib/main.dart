@@ -9,9 +9,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Find Restaurant',
+      title: 'PopPop',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       home: MyHomePage(title: 'Homepage'),
       debugShowCheckedModeBanner: false,
@@ -34,12 +34,16 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Find Restaurants'),
+        title: Text('PopPop'),
       ),
-      body: ListView(
+      body: Container(
+        color: Colors.green[50],
+        child: ListView(
         children: <Widget>[
+            Column(crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
             DropdownButton<String>(
-              
+              hint:Text('ค้นหาประเภทร้านอาหาร',style: TextStyle(fontSize: 18,color: Colors.black)),
               onChanged: (String newValue)  {
                 print(newValue);
                 navigateToSecondPage(context,newValue);
@@ -56,11 +60,12 @@ class _MyHomePageState extends State<MyHomePage> {
           titleSection,
           title2Section,
           title3Section,
-          
+            ])
         ],
+      )
       ),
       drawer: Drawer(
-        child: ListView(
+          child: ListView(
           children: <Widget>[ 
             DrawerHeader(child: Text('ส่วนของผู้ส่งสินค้า',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: Colors.black) )),
             Column(crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +80,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 //Container(margin: EdgeInsets.only(left: 0)),
               ],)
             // ListTile(title: Text('ช่วยเหลือ',style: TextStyle(fontSize: 20,color: Colors.black)),),
-          ],),)
+          ],
+          ),
+          ),
+          
     );
   }
 }

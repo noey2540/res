@@ -18,10 +18,12 @@ class _SecondPageState extends State<SecondPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue[300],
+          backgroundColor: Colors.green[300],
           title: Text(widget.category),
         ),
-        body: StreamBuilder<QuerySnapshot>(
+        body: Container(
+        color: Colors.green[50],
+        child:StreamBuilder<QuerySnapshot>(
       stream: Firestore.instance.collection('store').where("store_category", isEqualTo: widget.category).snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError)
@@ -33,6 +35,11 @@ class _SecondPageState extends State<SecondPage> {
               children: snapshot.data.documents.map((DocumentSnapshot document) {
                 return Center(
                   child: Card(
+                  child: Container(
+                      decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      gradient: LinearGradient(
+                      colors: [Colors.yellow[100], Colors.green[100]])),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
@@ -59,14 +66,16 @@ class _SecondPageState extends State<SecondPage> {
                           ),
                         ),
                       ],
-                    ),
+                    ),)
                   ),
                 );
               }).toList(),
             );
         }
       },
-    ));
+    )
+    )
+    );
 }
 }
 
