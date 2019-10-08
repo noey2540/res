@@ -58,12 +58,14 @@ class _MenuPageState extends State<MenuPage> {
                             title: Text(document['name']),
                             subtitle: Text(document['price'].toString()),
                             leading: Image.network(document["image"][0]),
-                            trailing:Text('$_counter',),
+                            trailing: Icon(Icons.shopping_cart),
+                            // trailing:Text('$_counter',),
                           ),
-                          FlatButton(
-                                onPressed: _incrementCounter,
-                                child: Icon(Icons.add)
-                              )
+                          
+                          // FlatButton(
+                          //       onPressed: _incrementCounter,
+                          //       child: Icon(Icons.add)
+                          //     )
                         ],
                       ),
                     ),

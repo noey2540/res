@@ -72,7 +72,8 @@ Container buildButtonSignIn() {
         constraints: BoxConstraints.expand(height: 50),
         child: FlatButton(
             child: Text("Sign in",textAlign: TextAlign.center,style: TextStyle(fontSize: 18, color: Colors.white)),
-            onPressed: () {navigateToSubmitOrderPage(context);}
+            onPressed: () {
+              navigateToSubmitOrderPage(context);}
             ),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16), color: Colors.green[200]),
