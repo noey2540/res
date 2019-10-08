@@ -5,7 +5,6 @@ import 'package:poppop/loginpage.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,7 +28,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,56 +35,77 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('PopPop'),
       ),
       body: Container(
-        color: Colors.green[50],
-        child: ListView(
-        children: <Widget>[
-            Column(crossAxisAlignment: CrossAxisAlignment.end,
-            children: <Widget>[
-            DropdownButton<String>(
-              hint:Text('ค้นหาประเภทร้านอาหาร',style: TextStyle(fontSize: 18,color: Colors.black)),
-              onChanged: (String newValue)  {
-                print(newValue);
-                navigateToSecondPage(context,newValue);
-              },
-              items: <String>['ปิ้งย่าง', 'ร้านอาหาร', 'ร้านส้มตำ', 'ร้านกาแฟ','ร้านน้ำชา']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              
-            ),
-          titleSection,
-          title2Section,
-          title3Section,
-            ])
-        ],
-      )
-      ),
-      drawer: Drawer(
+          color: Colors.green[50],
           child: ListView(
-          children: <Widget>[ 
-            DrawerHeader(child: Text('ส่วนของผู้ส่งสินค้า',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: Colors.black) )),
-            Column(crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    DropdownButton<String>(
+                      hint: Text('ค้นหาประเภทร้านอาหาร',
+                          style: TextStyle(fontSize: 18, color: Colors.black)),
+                      onChanged: (String newValue) {
+                        print(newValue);
+                        navigateToSecondPage(context, newValue);
+                      },
+                      items: <String>[
+                        'ปิ้งย่าง',
+                        'ร้านอาหาร',
+                        'ร้านส้มตำ',
+                        'ร้านกาแฟ',
+                        'ร้านน้ำชา'
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                    titleSection,
+                    title2Section,
+                    title3Section,
+                  ])
+            ],
+          )),
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            DrawerHeader(
+                child: Text('ส่วนของผู้ส่งสินค้า',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.black))),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Column(children: <Widget>[ 
-                  FlatButton.icon(
-                    onPressed: () {navigateToLoginPage(context);},
-                    icon: Icon(Icons.supervisor_account,color: Colors.green,size: 35,),
-                    label: Text("เข้าสู่ระบบ",
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16))),
-                   ], ),
+                Column(
+                  children: <Widget>[
+                    FlatButton.icon(
+                        onPressed: () {
+                          navigateToLoginPage(context);
+                        },
+                        icon: Icon(
+                          Icons.supervisor_account,
+                          color: Colors.green,
+                          size: 35,
+                        ),
+                        label: Text("เข้าสู่ระบบ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16))),
+                  ],
+                ),
                 //Container(margin: EdgeInsets.only(left: 0)),
-              ],)
+              ],
+            )
             // ListTile(title: Text('ช่วยเหลือ',style: TextStyle(fontSize: 20,color: Colors.black)),),
           ],
-          ),
-          ),
-          
+        ),
+      ),
     );
   }
 }
+
 Widget titleSection = Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: <Widget>[
@@ -163,7 +182,7 @@ Card _build1CardListView() {
 Card _build1CardListView2() {
   return Card(
     child:
-    Image.network("https://food.mthai.com/app/uploads/2016/06/Sushi-1.jpg"),
+        Image.network("https://food.mthai.com/app/uploads/2016/06/Sushi-1.jpg"),
   );
 }
 
@@ -220,8 +239,6 @@ Card _build2CardListView3() {
   );
 }
 
-
-
 Column _build3ButtonColumn({IconData icon, String label}) {
   var icColor = Colors.blue.shade900;
   return Column(
@@ -240,6 +257,7 @@ navigateToSecondPage(BuildContext context, String category) {
     return SecondPage(category: category);
   }));
 }
+
 navigateToLoginPage(BuildContext context) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
     return LoginPage();
