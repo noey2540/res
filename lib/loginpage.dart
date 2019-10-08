@@ -4,14 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:poppop/submitorderpage.dart';
 
-
 class LoginPage extends StatefulWidget {
-  LoginPage({Key key,
-  
+  LoginPage({
+    Key key,
   }) : super(key: key);
 
-  
-  
   _LoginPageState createState() => _LoginPageState();
 }
 
@@ -23,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
           backgroundColor: Colors.green[300],
           title: Text('เข้าสู่ระบบ'),
         ),
-        body:Container(
+        body: Container(
             color: Colors.green[50],
             child: Center(
               child: Container(
@@ -37,17 +34,15 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-
                       buildTextFieldUser(),
                       buildTextFieldPass(),
                       buildButtonSignIn(),
                     ],
                   )),
-            ))
-            );
-}
+            )));
+  }
 
-Container buildTextFieldUser() {
+  Container buildTextFieldUser() {
     return Container(
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
@@ -56,7 +51,8 @@ Container buildTextFieldUser() {
             decoration: InputDecoration.collapsed(hintText: "USERNAME"),
             style: TextStyle(fontSize: 18)));
   }
-Container buildTextFieldPass() {
+
+  Container buildTextFieldPass() {
     return Container(
         padding: EdgeInsets.all(12),
         margin: EdgeInsets.only(top: 12),
@@ -67,19 +63,22 @@ Container buildTextFieldPass() {
             decoration: InputDecoration.collapsed(hintText: "PASSWORD"),
             style: TextStyle(fontSize: 18)));
   }
-Container buildButtonSignIn() {
+
+  Container buildButtonSignIn() {
     return Container(
         constraints: BoxConstraints.expand(height: 50),
         child: FlatButton(
-            child: Text("Sign in",textAlign: TextAlign.center,style: TextStyle(fontSize: 18, color: Colors.white)),
-            onPressed: () {navigateToSubmitOrderPage(context);}
-            ),
+            child: Text("Sign in",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18, color: Colors.white)),
+            onPressed: () {
+              navigateToSubmitOrderPage(context);
+            }),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16), color: Colors.green[200]),
         margin: EdgeInsets.only(top: 16),
         padding: EdgeInsets.all(12));
   }
-
 }
 
 navigateToSubmitOrderPage(BuildContext context) {
