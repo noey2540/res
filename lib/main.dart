@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:poppop/secondpage.dart';
+import 'package:poppop/loginpage.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Find Restaurants',
+      title: 'PopPop',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       home: MyHomePage(title: 'Homepage'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -27,86 +28,84 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Find Restaurants'),
+        title: Text('PopPop'),
       ),
-      body: ListView(
-        children: <Widget>[
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: Container(
+          color: Colors.green[50],
+          child: ListView(
+            children: <Widget>[
+              Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    DropdownButton<String>(
+                      hint: Text('ค้นหาประเภทร้านอาหาร',
+                          style: TextStyle(fontSize: 18, color: Colors.black)),
+                      onChanged: (String newValue) {
+                        print(newValue);
+                        navigateToSecondPage(context, newValue);
+                      },
+                      items: <String>[
+                        'ปิ้งย่าง',
+                        'ร้านอาหาร',
+                        'ร้านส้มตำ',
+                        'ร้านกาแฟ',
+                        'ร้านน้ำชา'
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                    titleSection,
+                    title2Section,
+                    title3Section,
+                  ])
+            ],
+          )),
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            DrawerHeader(
+                child: Text('ส่วนของผู้ส่งสินค้า',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.black))),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Row(children: <Widget>[
-                  FlatButton.icon(
-                      onPressed: () => navigateToSecondPage(context),
-                      icon: Icon(Icons.location_on),
-                      label: Text("ค้นหาร้านอาหาร",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20))),
-                  FlatButton.icon(
-                      onPressed: () => navigateToSecondPage(context),
-                      icon: Icon(Icons.local_dining),
-                      label: Text("โปรโมชั่น",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20))),
-                ]),
-                Container(margin: EdgeInsets.only(left: 0),)
-              ]),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Row(children: <Widget>[
-                  FlatButton.icon(
-                      onPressed: () => navigateToSecondPage(context),
-                      icon: Icon(Icons.grade),
-                      label: Text("ร้านแนะนำ",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20))),
-                  FlatButton.icon(
-                      onPressed: () => navigateToSecondPage(context),
-                      icon: Icon(Icons.fastfood),
-                      label: Text("เมนูยอดฮิต",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20))),
-                ]),
-                Container(margin: EdgeInsets.only(left: 0),)
-              ]),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Row(children: <Widget>[
-                  FlatButton.icon(
-                      onPressed: () => navigateToSecondPage(context),
-                      icon: Icon(Icons.contact_phone),
-                      label: Text("ติดต่อเรา",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20))),
-                  FlatButton.icon(
-                      onPressed: () => navigateToSecondPage(context),
-                      icon: Icon(Icons.settings),
-                      label: Text("Admin",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20))),
-                ]),
-                Container(margin: EdgeInsets.only(left: 0),)
-              ]),
-
-          titleSection,
-          title2Section,
-          title3Section,
-          header4Section,
-          FlatButton(
-              color: Colors.red[300],
-              child: Text("Next", style: TextStyle(color: Colors.white)),
-              onPressed: () => navigateToSecondPage(context))
-        ],
+                Column(
+                  children: <Widget>[
+                    FlatButton.icon(
+                        onPressed: () {
+                          navigateToLoginPage(context);
+                        },
+                        icon: Icon(
+                          Icons.supervisor_account,
+                          color: Colors.green,
+                          size: 35,
+                        ),
+                        label: Text("เข้าสู่ระบบ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16))),
+                  ],
+                ),
+                //Container(margin: EdgeInsets.only(left: 0)),
+              ],
+            )
+            // ListTile(title: Text('ช่วยเหลือ',style: TextStyle(fontSize: 20,color: Colors.black)),),
+          ],
+        ),
       ),
     );
   }
 }
+
 Widget titleSection = Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: <Widget>[
@@ -183,7 +182,7 @@ Card _build1CardListView() {
 Card _build1CardListView2() {
   return Card(
     child:
-    Image.network("https://food.mthai.com/app/uploads/2016/06/Sushi-1.jpg"),
+        Image.network("https://food.mthai.com/app/uploads/2016/06/Sushi-1.jpg"),
   );
 }
 
@@ -240,16 +239,6 @@ Card _build2CardListView3() {
   );
 }
 
-Widget header4Section = Row(
-  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-  children: <Widget>[
-    _build3ButtonColumn(icon: Icons.alternate_email),
-    _build3ButtonColumn(icon: Icons.phone),
-    _build3ButtonColumn(icon: Icons.mail),
-    _build3ButtonColumn(icon: Icons.location_on)
-  ],
-);
-
 Column _build3ButtonColumn({IconData icon, String label}) {
   var icColor = Colors.blue.shade900;
   return Column(
@@ -263,8 +252,14 @@ Column _build3ButtonColumn({IconData icon, String label}) {
   );
 }
 
-navigateToSecondPage(BuildContext context) {
+navigateToSecondPage(BuildContext context, String category) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return MySecondPage();
+    return SecondPage(category: category);
+  }));
+}
+
+navigateToLoginPage(BuildContext context) {
+  Navigator.push(context, MaterialPageRoute(builder: (context) {
+    return LoginPage();
   }));
 }
