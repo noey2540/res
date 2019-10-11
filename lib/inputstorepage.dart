@@ -74,6 +74,7 @@ class _InputStorePageState extends State<InputStorePage> {
                     '    ตำแหน่งที่ตั้ง',
                   ),
                   ]),
+                  
                   Container(
                       padding: EdgeInsets.only(),
                       child: RaisedButton(
