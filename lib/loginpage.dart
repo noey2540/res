@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:poppop/inputstorepage.dart';
+import 'package:poppop/submitorderpage.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({
@@ -72,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 18, color: Colors.white)),
             onPressed: () {
-              navigateToInputStorePage(context);
+              navigateToSubmitOrderPage(context);
             }),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16), color: Colors.green[200]),
@@ -81,8 +81,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-navigateToInputStorePage(BuildContext context) {
+navigateToSubmitOrderPage(BuildContext context) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return InputStorePage();
+    return SubmitOrderPage();
   }));
 }
