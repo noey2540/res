@@ -16,7 +16,13 @@ class _AdminPageState extends State<AdminPage> {
         appBar: AppBar(
           backgroundColor: Colors.green[300],
           title: Text('Admin'),
+          actions: <Widget>[
+          FlatButton(
+                                          child: const Text('Input'),
+                                          onPressed: () => navigateToInputStorePage(context),
+                                        )],
         ),
+        
         body: Container(
             color: Colors.green[50],
             child: StreamBuilder<QuerySnapshot>(
@@ -82,6 +88,7 @@ class _AdminPageState extends State<AdminPage> {
             ),
             
             )
+            
             );
   }
 }
@@ -89,5 +96,10 @@ class _AdminPageState extends State<AdminPage> {
 navigateToUpdateStorePage(BuildContext context, String docID) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
     return UpdateStorePage(docID: docID);
+  }));
+}
+navigateToInputStorePage(BuildContext context) {
+  Navigator.push(context, MaterialPageRoute(builder: (context) {
+    return InputStorePage();
   }));
 }

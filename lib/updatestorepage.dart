@@ -110,7 +110,7 @@ class _UpdateStorePageState extends State<UpdateStorePage> {
                         // onPressed: _onSubmit,
                       )),
                 ],
-        )
+        );
               },
             ),
             

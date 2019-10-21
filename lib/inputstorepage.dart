@@ -101,8 +101,8 @@ class _InputStorePageState extends State<InputStorePage> {
       form.save(); //This invokes each onSaved event
 
       print('Form save called, newContact is now up to date...');
-      print('Name: ${newStore.storename}');
-      print('Name: ${newStore.storecategory}');
+      print('Name: ${newStore.store_name}');
+      print('Name: ${newStore.store_category}');
       print(_image);
       String imgUrl = await onImageUploading(_image);
       print(imgUrl);
@@ -110,7 +110,7 @@ class _InputStorePageState extends State<InputStorePage> {
       print(_startLocation.longitude);
       
       Firestore.instance.collection('store').document()
-  .setData({ 'storename': newStore.storename, 'storecategory': newStore.storecategory, 'image' : [imgUrl],'location':[_startLocation.latitude,_startLocation.longitude]});
+  .setData({ 'store_name': newStore.store_name, 'store_category': newStore.store_category, 'image' : [imgUrl],'location':[_startLocation.latitude,_startLocation.longitude]});
   }
 
   @override
@@ -132,7 +132,7 @@ class _InputStorePageState extends State<InputStorePage> {
                       hintText: 'กรุณากรอกชื่อร้าน',
                       labelText: 'ชื่อร้าน',
                     ),
-                    onSaved: (val) => newStore.storename = val,
+                    onSaved: (val) => newStore.store_name = val,
                   ),
                   Row(
                   children: <Widget>[
@@ -144,7 +144,7 @@ class _InputStorePageState extends State<InputStorePage> {
                         setState(() {
                           dropdownValue = newValue;
                         });
-                        newStore.storecategory = newValue;
+                        newStore.store_category = newValue;
                         },
                         items: <String>[
                           'ปิ้งย่าง',

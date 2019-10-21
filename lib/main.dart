@@ -165,7 +165,7 @@ Widget title2Section = Column(
           _build1CardListView(),
           _build1CardListView2(),
           _build1CardListView3(),
-          _build1CardListView4()
+          _build1CardListView4(),
         ],
       ),
     )
