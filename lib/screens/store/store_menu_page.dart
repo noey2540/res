@@ -2,17 +2,17 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import './order_page.dart';
+import '../../order_page.dart';
 
-class MenuPage extends StatefulWidget {
-  MenuPage({Key key, this.docID}) : super(key: key);
+class StoreMenuPage extends StatefulWidget {
+  StoreMenuPage({Key key, this.docID}) : super(key: key);
 
   final String docID;
 
-  MenuPageState createState() => MenuPageState();
+  StoreMenuPageState createState() => StoreMenuPageState();
 }
 
-class MenuPageState extends State<MenuPage> {
+class StoreMenuPageState extends State<StoreMenuPage> {
   int _counter = 0;
 
   void _incrementCounter() {
