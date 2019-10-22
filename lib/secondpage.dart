@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:poppop/menupage.dart';
+import 'package:poppop/menu_page.dart';
 
 class SecondPage extends StatefulWidget {
   SecondPage({Key key, this.category}) : super(key: key);
   final String category;
-  _SecondPageState createState() => _SecondPageState();
+  SecondPageState createState() => SecondPageState();
 }
 
-class _SecondPageState extends State<SecondPage> {
+class SecondPageState extends State<SecondPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,13 +25,12 @@ class _SecondPageState extends State<SecondPage> {
                   .snapshots(),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (snapshot.hasError)
-                  return new Text('Error: ${snapshot.error}');
+                if (snapshot.hasError) return Text('Error: ${snapshot.error}');
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
-                    return new Text('Loading...');
+                    return Text('Loading...');
                   default:
-                    return new ListView(
+                    return ListView(
                       children: snapshot.data.documents
                           .map((DocumentSnapshot document) {
                         return Center(

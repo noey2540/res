@@ -8,10 +8,10 @@ class OrderPage extends StatefulWidget {
     Key key,
   }) : super(key: key);
 
-  _OrderPageState createState() => _OrderPageState();
+  OrderPageState createState() => OrderPageState();
 }
 
-class _OrderPageState extends State<OrderPage> {
+class OrderPageState extends State<OrderPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

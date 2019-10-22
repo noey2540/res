@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:poppop/adminpage.dart';
+import './admin_page.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({

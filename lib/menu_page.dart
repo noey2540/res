@@ -2,17 +2,17 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:poppop/orderpage.dart';
+import './order_page.dart';
 
 class MenuPage extends StatefulWidget {
   MenuPage({Key key, this.docID}) : super(key: key);
 
   final String docID;
 
-  _MenuPageState createState() => _MenuPageState();
+  MenuPageState createState() => MenuPageState();
 }
 
-class _MenuPageState extends State<MenuPage> {
+class MenuPageState extends State<MenuPage> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -37,13 +37,12 @@ class _MenuPageState extends State<MenuPage> {
                   .snapshots(),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (snapshot.hasError)
-                  return new Text('Error: ${snapshot.error}');
+                if (snapshot.hasError) return Text('Error: ${snapshot.error}');
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
-                    return new Text('Loading...');
+                    return Text('Loading...');
                   default:
-                    return new ListView(
+                    return ListView(
                         children: snapshot.data.documents
                             .map((DocumentSnapshot document) {
                       // if (document['store_id'] == widget.docID) {
