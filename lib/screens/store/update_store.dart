@@ -17,7 +17,7 @@ class UpdateStore extends StatefulWidget {
 
 class UpdateStoreState extends State<UpdateStore> {
   String dropdownValue = '';
-   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   File _image;
 
   Future getImage() async {
@@ -27,6 +27,7 @@ class UpdateStoreState extends State<UpdateStore> {
       _image = image;
     });
   }
+
   LocationData _startLocation;
   LocationData _currentLocation;
 
@@ -91,7 +92,7 @@ class UpdateStoreState extends State<UpdateStore> {
       _startLocation = location;
     });
   }
-  
+
   void _onUpdate() async {
     final FormState form = _formKey.currentState;
     form.save(); //This invokes each onSaved event
@@ -115,26 +116,27 @@ class UpdateStoreState extends State<UpdateStore> {
     }
     _alertupdate();
   }
+
   Future<void> _alertupdate() async {
-  return showDialog<void>(
-    context: context,
-    barrierDismissible: false, // user must tap button!
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text('Update Success'),
-        actions: <Widget>[
-          FlatButton(
-            child: Text('Ok'),
-            onPressed: () {
-              Navigator.of(context).pop();
-              navigateToAdminPage(context);
-            },
-          ),
-        ],
-      );
-    },
-  );
-}
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Update Success'),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                navigateToAdminPage(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -144,103 +146,104 @@ class UpdateStoreState extends State<UpdateStore> {
           title: Text('UpdateStore'),
         ),
         body: SafeArea(
-          top: false,
-          bottom: false,
-          child: Form(
-            key: _formKey,
-          // color: Colors.green[50],
-          child: StreamBuilder(
-            stream: Firestore.instance
-                .collection('store')
-                .document(widget.docID)
-                .snapshots(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              print(snapshot.data);
-              var document = snapshot.data;
-              return ListView(
-                children: <Widget>[
-                  TextFormField(
-                    initialValue: document['store_name'],
-                    decoration: InputDecoration(
-                      icon: Icon(Icons.account_balance),
-                      hintText: 'กรุณากรอกชื่อร้าน',
-                      labelText: 'ชื่อร้าน',
-                    ),
-                    onSaved: (val) => newStore.store_name = val,
-                  ),
-                  Row(children: <Widget>[
-                    Icon(Icons.beenhere),
-                    Text('    ประเภทร้านอาหาร                  '),
-                    DropdownButton<String>(
-                      value: document['store_category'],
-                      onChanged: (String newValue) {
-                        setState(() {
-                          dropdownValue = newValue;
-                        });
-                        newStore.store_category = newValue;
-                      },
-                      items: <String>[
-                        'ปิ้งย่าง',
-                        'ร้านอาหาร',
-                        'ร้านส้มตำ',
-                        'ร้านกาแฟ',
-                        'ร้านน้ำชา'
-                      ].map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                    ),
-                  ]),
-                  Row(children: <Widget>[
-                    RaisedButton(
-                      onPressed: getImage,
-                      child: Icon(Icons.add_a_photo)
-                    ),
-                     _image == null
-                        ? Image.network(document["image"][0],width: 250,
-                            height: 150,)
-                        : Image.file(
-                            _image,
-                            width: 250,
-                            height: 150,
-                          )
-                  ]),
-                  Row(
+            top: false,
+            bottom: false,
+            child: Form(
+              key: _formKey,
+              // color: Colors.green[50],
+              child: StreamBuilder(
+                stream: Firestore.instance
+                    .collection('store')
+                    .document(widget.docID)
+                    .snapshots(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  print(snapshot.data);
+                  var document = snapshot.data;
+                  return ListView(
                     children: <Widget>[
-                      RaisedButton(
-                          child: Text('เปลี่ยนตำแหน่งที่ตั้ง'),
-                          onPressed: () {
-                        _initPlatformState();
-                      }),
+                      TextFormField(
+                        initialValue: document['store_name'],
+                        decoration: InputDecoration(
+                          icon: Icon(Icons.account_balance),
+                          hintText: 'กรุณากรอกชื่อร้าน',
+                          labelText: 'ชื่อร้าน',
+                        ),
+                        onSaved: (val) => newStore.store_name = val,
+                      ),
+                      Row(children: <Widget>[
+                        Icon(Icons.beenhere),
+                        Text('    ประเภทร้านอาหาร                  '),
+                        DropdownButton<String>(
+                          value: document['store_category'],
+                          onChanged: (String newValue) {
+                            setState(() {
+                              dropdownValue = newValue;
+                            });
+                            newStore.store_category = newValue;
+                          },
+                          items: <String>[
+                            'ปิ้งย่าง',
+                            'ร้านอาหาร',
+                            'ร้านส้มตำ',
+                            'ร้านกาแฟ',
+                            'ร้านน้ำชา'
+                          ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ]),
+                      Row(children: <Widget>[
+                        RaisedButton(
+                            onPressed: getImage,
+                            child: Icon(Icons.add_a_photo)),
+                        _image == null
+                            ? Image.network(
+                                document["image"][0],
+                                width: 250,
+                                height: 150,
+                              )
+                            : Image.file(
+                                _image,
+                                width: 250,
+                                height: 150,
+                              )
+                      ]),
+                      Row(
+                        children: <Widget>[
+                          RaisedButton(
+                              child: Text('เปลี่ยนตำแหน่งที่ตั้ง'),
+                              onPressed: () {
+                                _initPlatformState();
+                              }),
+                        ],
+                      ),
+                      Text('latitude:'),
+                      Text(_startLocation == null
+                          ? document["location"][0].toString()
+                          : _startLocation.latitude.toString()),
+                      Text('longitude:'),
+                      Text(
+                        _startLocation == null
+                            ? document["location"][1].toString()
+                            : _startLocation.longitude.toString(),
+                      ),
+                      Container(
+                          padding: EdgeInsets.only(),
+                          child: RaisedButton(
+                            child: Text('Update'),
+                            onPressed: _onUpdate,
+                          )),
                     ],
-                  ),
-                Text('latitude:'),
-                Text(_startLocation == null
-                    ? document["location"][0].toString()
-                    : _startLocation.latitude.toString()),
-                Text('longitude:'),
-                Text(
-                  _startLocation == null
-                      ? document["location"][1].toString()
-                      : _startLocation.longitude.toString(),
-                ),
-                  Container(
-                      padding: EdgeInsets.only(),
-                      child: RaisedButton(
-                        child: Text('Update'),
-                        onPressed: _onUpdate,
-                      )),
-                  
-                ],
-              );
-            },
-          ),
-        )
-        ));
+                  );
+                },
+              ),
+            )));
   }
 }
+
 navigateToAdminPage(BuildContext context) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
     return AdminPage();

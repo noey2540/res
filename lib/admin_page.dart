@@ -13,29 +13,28 @@ class AdminPage extends StatefulWidget {
 
 class _AdminPageState extends State<AdminPage> {
   Future _onDelete(String docID) async {
-
-      Firestore.instance.collection('store').document(docID).delete();
-      return null;
+    Firestore.instance.collection('store').document(docID).delete();
+    return null;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.green[300],
-          title: Text('Admin'),
-          actions: <Widget>[
-            FlatButton(
-                       child: const Text('Input'),
-                       onPressed: () {navigateToNewStorePage(context);},
-                                    )]
-        ),
+            backgroundColor: Colors.green[300],
+            title: Text('Admin'),
+            actions: <Widget>[
+              FlatButton(
+                child: const Text('Input'),
+                onPressed: () {
+                  navigateToNewStorePage(context);
+                },
+              )
+            ]),
         body: Container(
           color: Colors.green[50],
           child: StreamBuilder<QuerySnapshot>(
-            stream: Firestore.instance
-                .collection('store')
-
-                .snapshots(),
+            stream: Firestore.instance.collection('store').snapshots(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) return Text('Error: ${snapshot.error}');
@@ -76,11 +75,10 @@ class _AdminPageState extends State<AdminPage> {
                                       },
                                     ),
                                     FlatButton(
-                                      child: const Text('Delete'),
-                                      onPressed: () {
-                                           _onDelete(document.documentID);
-                                      }
-                                    ),
+                                        child: const Text('Delete'),
+                                        onPressed: () {
+                                          _onDelete(document.documentID);
+                                        }),
                                   ],
                                 ),
                               ),
@@ -102,7 +100,10 @@ navigateToUpdateStorePage(BuildContext context, String docID) {
     return UpdateStore(docID: docID);
   }));
 }
-navigateToNewStorePage(BuildContext context,) {
+
+navigateToNewStorePage(
+  BuildContext context,
+) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
     return NewStore();
   }));

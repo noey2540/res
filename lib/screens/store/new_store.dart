@@ -120,26 +120,27 @@ class NewStoreState extends State<NewStore> {
     }
     _alertinput();
   }
+
   Future<void> _alertinput() async {
-  return showDialog<void>(
-    context: context,
-    barrierDismissible: false, // user must tap button!
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text('Input Success'),
-        actions: <Widget>[
-          FlatButton(
-            child: Text('Ok'),
-            onPressed: () {
-              Navigator.of(context).pop();
-              navigateToAdminPage(context);
-            },
-          ),
-        ],
-      );
-    },
-  );
-}
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Input Success'),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                navigateToAdminPage(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -226,13 +227,13 @@ class NewStoreState extends State<NewStore> {
                       child: Text('Submit'),
                       onPressed: _onSubmit,
                     )),
-                    
               ],
             ),
           ),
         ));
   }
 }
+
 navigateToAdminPage(BuildContext context) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
     return AdminPage();
