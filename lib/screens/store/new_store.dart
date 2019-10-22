@@ -101,20 +101,22 @@ class NewStoreState extends State<NewStore> {
     form.save(); //This invokes each onSaved event
 
     print('Form save called, newContact is now up to date...');
-    print('Name: ${newStore.storename}');
-    print('Name: ${newStore.storecategory}');
+    print('Name: ${newStore.name}');
+    print('Name: ${newStore.category}');
     print(_image);
     String imgUrl = await onImageUploading(_image);
     print(imgUrl);
     print(_startLocation.latitude);
     print(_startLocation.longitude);
 
-    Firestore.instance.collection('store').document().setData({
-      'storename': newStore.storename,
-      'storecategory': newStore.storecategory,
-      'image': [imgUrl],
-      'location': [_startLocation.latitude, _startLocation.longitude]
-    });
+    if (imgUrl.isNotEmpty) {
+      Firestore.instance.collection('store').document().setData({
+        'name': newStore.name,
+        'category': newStore.category,
+        'imageUrl': [imgUrl],
+        'location': [_startLocation.latitude, _startLocation.longitude]
+      });
+    }
   }
 
   @override
@@ -137,7 +139,7 @@ class NewStoreState extends State<NewStore> {
                     hintText: 'กรุณากรอกชื่อร้าน',
                     labelText: 'ชื่อร้าน',
                   ),
-                  onSaved: (val) => newStore.storename = val,
+                  onSaved: (val) => newStore.name = val,
                 ),
                 Row(children: <Widget>[
                   Icon(Icons.beenhere),
@@ -148,7 +150,7 @@ class NewStoreState extends State<NewStore> {
                       setState(() {
                         dropdownValue = newValue;
                       });
-                      newStore.storecategory = newValue;
+                      newStore.category = newValue;
                     },
                     items: <String>[
                       'ปิ้งย่าง',
