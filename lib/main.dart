@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:poppop/secondpage.dart';
+import './screens/store/stores_page.dart';
 import './login_page.dart';
 
 void main() => runApp(MyApp());
@@ -109,7 +109,7 @@ class MyHomePageState extends State<MyHomePage> {
 
   navigateToSecondPage(BuildContext context, String category) {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return SecondPage(category: category);
+      return StoresPage(category: category);
     }));
   }
 

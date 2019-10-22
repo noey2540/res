@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:location/location.dart';
 import '../../models/store.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../image_service.dart';
+import '../../services/image_service.dart';
 
 class NewStore extends StatefulWidget {
   NewStore({
