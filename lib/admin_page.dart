@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import './screens/store/update_store.dart';
+import './screens/store/admin_menu_page.dart';
 import './screens/store/new_store.dart';
 
 class AdminPage extends StatefulWidget {
@@ -25,7 +26,7 @@ class _AdminPageState extends State<AdminPage> {
             title: Text('Admin'),
             actions: <Widget>[
               FlatButton(
-                child: const Text('Input'),
+                child: const Text('Input Store'),
                 onPressed: () {
                   navigateToNewStorePage(context);
                 },
@@ -62,6 +63,10 @@ class _AdminPageState extends State<AdminPage> {
                                     style: TextStyle(
                                         fontSize: 20, color: Colors.black)),
                                 // subtitle: Image.network(document["image"][0]),
+                                onTap: () {
+                                    navigateToAdminMenuPage(
+                                            context, document.documentID);
+                                  },
                               ),
                               ButtonTheme.bar(
                                 // make buttons use the appropriate styles for cards
@@ -106,5 +111,11 @@ navigateToNewStorePage(
 ) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
     return NewStore();
+  }));
+}
+
+navigateToAdminMenuPage(BuildContext context, String docID) {
+  Navigator.push(context, MaterialPageRoute(builder: (context) {
+    return AdminMenuPage(docID: docID);
   }));
 }
