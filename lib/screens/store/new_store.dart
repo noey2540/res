@@ -19,7 +19,7 @@ class NewStore extends StatefulWidget {
 
 class NewStoreState extends State<NewStore> {
   String dropdownValue = "ปิ้งย่าง";
-  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   File _image;
 
@@ -36,13 +36,13 @@ class NewStoreState extends State<NewStore> {
 
   StreamSubscription<LocationData> _locationSubscription;
 
-  Location _locationService = new Location();
+  Location _locationService = Location();
   bool _permission = false;
   String error;
 
   bool currentWidget = true;
 
-  Store newStore = new Store();
+  Store newStore = Store();
 
   @override
   void initState() {
@@ -56,7 +56,6 @@ class NewStoreState extends State<NewStore> {
         accuracy: LocationAccuracy.HIGH, interval: 1000);
 
     LocationData location;
-    // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       bool serviceStatus = await _locationService.serviceEnabled();
       print("Service status: $serviceStatus");
@@ -99,7 +98,7 @@ class NewStoreState extends State<NewStore> {
 
   void _onSubmit() async {
     final FormState form = _formKey.currentState;
-    form.save(); //This invokes each onSaved event
+    form.save();
 
     print('Form save called, newContact is now up to date...');
     print('Name: ${newStore.store_name}');

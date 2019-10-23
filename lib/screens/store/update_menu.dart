@@ -16,7 +16,7 @@ class UpdateMenu extends StatefulWidget {
 }
 
 class UpdateMenuState extends State<UpdateMenu> {
-  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   File _image;
 
   Future getImage() async {
@@ -26,9 +26,9 @@ class UpdateMenuState extends State<UpdateMenu> {
       _image = image;
     });
   }
-   Menu newMenu = new Menu();
 
- 
+  Menu newMenu = Menu();
+
   void _onUpdate() async {
     final FormState form = _formKey.currentState;
     form.save(); //This invokes each onSaved event
@@ -45,7 +45,6 @@ class UpdateMenuState extends State<UpdateMenu> {
         'name': newMenu.name,
         'price': newMenu.price,
         'image': [imgUrl],
-         
       });
     }
     _alertupdate();
@@ -79,71 +78,68 @@ class UpdateMenuState extends State<UpdateMenu> {
           backgroundColor: Colors.green[300],
           title: Text('UpdateMenu'),
         ),
-        body: SafeArea(
-            top: false,
-            bottom: false,
-            child: Form(
-              key: _formKey,
-              // color: Colors.green[50],
-              child: StreamBuilder(
-                stream: Firestore.instance
-                    .collection('menus')
-                    .document(widget.docID)
-                    .snapshots(),
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  print(snapshot.data);
-                  var document = snapshot.data;
-                  return ListView(
-                    children: <Widget>[
-                      TextFormField(
-                        initialValue: document['name'],
-                        decoration: InputDecoration(
-                    icon: Icon(Icons.account_balance),
-                    hintText: 'กรุณากรอกชื่ออาหาร',
-                    labelText: 'ชื่ออาหาร',
-                  ),
-                  onSaved: (val) => newMenu.name = val,
-                      ),
-                      Row(children: <Widget>[
-                  TextFormField(
-                    initialValue: document['price'].toString(),
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.account_balance),
-                    hintText: 'กรุณากรอกราคา',
-                    labelText: 'ราคา',
-                  ),
-                  keyboardType: TextInputType.number,
-                  onSaved: (val) => newMenu.price =double.parse(val) ,
-                )
-                ],),
-                      Row(children: <Widget>[
-                        RaisedButton(
-                            onPressed: getImage,
-                            child: Icon(Icons.add_a_photo)),
-                        _image == null
-                            ? Image.network(
-                                document["image"][0],
-                                width: 250,
-                                height: 150,
-                              )
-                            : Image.file(
-                                _image,
-                                width: 250,
-                                height: 150,
-                              )
-                      ]),
-                    
-                      Container(
-                          padding: EdgeInsets.only(),
-                          child: RaisedButton(
-                            child: Text('Update'),
-                            onPressed: _onUpdate,
-                          )),
-                    ],
-                  );
-                },
-              ),
-            )));
+        body: StreamBuilder(
+            stream: Firestore.instance
+                .collection('menus')
+                .document(widget.docID)
+                .snapshots(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (!snapshot.hasData) {
+                return Text("Loading");
+              }
+              var document = snapshot.data;
+              return SafeArea(
+                  top: false,
+                  bottom: false,
+                  child: Form(
+                      key: _formKey,
+                      // color: Colors.green[50],
+                      child: ListView(
+                        children: <Widget>[
+                          TextFormField(
+                            initialValue: document['name'],
+                            decoration: InputDecoration(
+                              icon: Icon(Icons.account_balance),
+                              hintText: 'กรุณากรอกชื่ออาหาร',
+                              labelText: 'ชื่ออาหาร',
+                            ),
+                            onSaved: (val) => newMenu.name = val,
+                          ),
+                          TextFormField(
+                            initialValue: document['price'].toString(),
+                            decoration: InputDecoration(
+                              icon: Icon(Icons.account_balance),
+                              hintText: 'กรุณากรอกราคา',
+                              labelText: 'ราคา',
+                            ),
+                            keyboardType: TextInputType.number,
+                            onSaved: (val) => newMenu.price = double.parse(val),
+                          ),
+                          Row(children: <Widget>[
+                            RaisedButton(
+                                onPressed: getImage,
+                                child: Icon(Icons.add_a_photo)),
+                            _image == null
+                                ? Image.network(
+                                    document["image"][0],
+                                    width: 250,
+                                    height: 150,
+                                  )
+                                : Image.file(
+                                    _image,
+                                    width: 250,
+                                    height: 150,
+                                  )
+                          ]),
+                          Container(
+                              padding: EdgeInsets.only(),
+                              child: RaisedButton(
+                                child: Text('Update'),
+                                onPressed: _onUpdate,
+                              )),
+                        ],
+                      )));
+            }));
   }
 }
 

@@ -17,7 +17,7 @@ class UpdateStore extends StatefulWidget {
 
 class UpdateStoreState extends State<UpdateStore> {
   String dropdownValue = '';
-  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   File _image;
 
   Future getImage() async {
@@ -33,12 +33,12 @@ class UpdateStoreState extends State<UpdateStore> {
 
   StreamSubscription<LocationData> _locationSubscription;
 
-  Location _locationService = new Location();
+  Location _locationService = Location();
   bool _permission = false;
   String error;
 
   bool currentWidget = true;
-  Store newStore = new Store();
+  Store newStore = Store();
 
   @override
   void initState() {
@@ -52,7 +52,6 @@ class UpdateStoreState extends State<UpdateStore> {
         accuracy: LocationAccuracy.HIGH, interval: 1000);
 
     LocationData location;
-    // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       bool serviceStatus = await _locationService.serviceEnabled();
       print("Service status: $serviceStatus");
@@ -95,7 +94,7 @@ class UpdateStoreState extends State<UpdateStore> {
 
   void _onUpdate() async {
     final FormState form = _formKey.currentState;
-    form.save(); //This invokes each onSaved event
+    form.save();
 
     print('Form save called, newContact is now up to date...');
     print('Name: ${newStore.store_name}');
@@ -120,7 +119,7 @@ class UpdateStoreState extends State<UpdateStore> {
   Future<void> _alertupdate() async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Update Success'),
@@ -150,14 +149,15 @@ class UpdateStoreState extends State<UpdateStore> {
             bottom: false,
             child: Form(
               key: _formKey,
-              // color: Colors.green[50],
               child: StreamBuilder(
                 stream: Firestore.instance
                     .collection('store')
                     .document(widget.docID)
                     .snapshots(),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  print(snapshot.data);
+                  if (!snapshot.hasData) {
+                    return Text("Loading");
+                  }
                   var document = snapshot.data;
                   return ListView(
                     children: <Widget>[

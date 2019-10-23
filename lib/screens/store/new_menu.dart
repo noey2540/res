@@ -10,16 +10,13 @@ import '../../services/image_service.dart';
 import './admin_menu_page.dart';
 
 class NewMenu extends StatefulWidget {
-  NewMenu({
-    Key key,this.docID
-  }) : super(key: key);
+  NewMenu({Key key, this.docID}) : super(key: key);
   final String docID;
   NewMenuState createState() => NewMenuState();
 }
 
 class NewMenuState extends State<NewMenu> {
- 
-  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   File _image;
 
@@ -31,19 +28,16 @@ class NewMenuState extends State<NewMenu> {
     });
   }
 
-  
-  Menu newMenu = new Menu();
+  Menu newMenu = Menu();
 
-
-
-  void _onSubmit() async {
+  void _onSubmit(documentId) async {
     final FormState form = _formKey.currentState;
     form.save(); //This invokes each onSaved event
 
     print('Form save called, newContact is now up to date...');
     print('Name: ${newMenu.name}');
     print('price: ${newMenu.price}');
-    print('price: ${newMenu.store_id}');
+    print('store: ' + documentId);
     print(_image);
     String imgUrl = await onImageUploading(_image);
     print(imgUrl);
@@ -53,8 +47,7 @@ class NewMenuState extends State<NewMenu> {
         'name': newMenu.name,
         'price': newMenu.price,
         'image': [imgUrl],
-        'store_id': widget.docID
-         
+        'store_id': documentId
       });
     }
     _alertinput();
@@ -103,17 +96,15 @@ class NewMenuState extends State<NewMenu> {
                   ),
                   onSaved: (val) => newMenu.name = val,
                 ),
-                Row(children: <Widget>[
-                  TextFormField(
+                TextFormField(
                   decoration: InputDecoration(
                     icon: Icon(Icons.account_balance),
                     hintText: 'กรุณากรอกราคา',
                     labelText: 'ราคา',
                   ),
                   keyboardType: TextInputType.number,
-                  onSaved: (val) => newMenu.price =double.parse(val) ,
-                )
-                ],),
+                  onSaved: (val) => newMenu.price = double.parse(val),
+                ),
                 Row(children: <Widget>[
                   RaisedButton(
                     onPressed: getImage,
@@ -129,12 +120,13 @@ class NewMenuState extends State<NewMenu> {
                           ),
                   ),
                 ]),
-               
                 Container(
                     padding: EdgeInsets.only(),
                     child: RaisedButton(
                       child: Text('Submit'),
-                      onPressed: _onSubmit,
+                      onPressed: () {
+                        _onSubmit(widget.docID);
+                      },
                     )),
               ],
             ),
