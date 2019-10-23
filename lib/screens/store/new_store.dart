@@ -7,6 +7,7 @@ import 'package:location/location.dart';
 import '../../models/store.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../services/image_service.dart';
+import '../../admin_page.dart';
 
 class NewStore extends StatefulWidget {
   NewStore({
@@ -101,8 +102,8 @@ class NewStoreState extends State<NewStore> {
     form.save(); //This invokes each onSaved event
 
     print('Form save called, newContact is now up to date...');
-    print('Name: ${newStore.name}');
-    print('Name: ${newStore.category}');
+    print('Name: ${newStore.store_name}');
+    print('Name: ${newStore.store_category}');
     print(_image);
     String imgUrl = await onImageUploading(_image);
     print(imgUrl);
@@ -111,13 +112,34 @@ class NewStoreState extends State<NewStore> {
 
     if (imgUrl.isNotEmpty) {
       Firestore.instance.collection('store').document().setData({
-        'name': newStore.name,
-        'category': newStore.category,
-        'imageUrl': [imgUrl],
+        'store_name': newStore.store_name,
+        'store_category': newStore.store_category,
+        'image': [imgUrl],
         'location': [_startLocation.latitude, _startLocation.longitude]
       });
     }
+    _alertinput();
   }
+  Future<void> _alertinput() async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Input Success'),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Ok'),
+            onPressed: () {
+              Navigator.of(context).pop();
+              navigateToAdminPage(context);
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +161,7 @@ class NewStoreState extends State<NewStore> {
                     hintText: 'กรุณากรอกชื่อร้าน',
                     labelText: 'ชื่อร้าน',
                   ),
-                  onSaved: (val) => newStore.name = val,
+                  onSaved: (val) => newStore.store_name = val,
                 ),
                 Row(children: <Widget>[
                   Icon(Icons.beenhere),
@@ -150,7 +172,7 @@ class NewStoreState extends State<NewStore> {
                       setState(() {
                         dropdownValue = newValue;
                       });
-                      newStore.category = newValue;
+                      newStore.store_category = newValue;
                     },
                     items: <String>[
                       'ปิ้งย่าง',
@@ -204,9 +226,15 @@ class NewStoreState extends State<NewStore> {
                       child: Text('Submit'),
                       onPressed: _onSubmit,
                     )),
+                    
               ],
             ),
           ),
         ));
   }
+}
+navigateToAdminPage(BuildContext context) {
+  Navigator.push(context, MaterialPageRoute(builder: (context) {
+    return AdminPage();
+  }));
 }

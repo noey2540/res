@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './screens/store/stores_page.dart';
 import './login_page.dart';
+import './screens/store/stores_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -107,7 +108,7 @@ class MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  navigateToSecondPage(BuildContext context, String category) {
+  navigateToStoresPage(BuildContext context, String category) {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return StoresPage(category: category);
     }));
@@ -137,7 +138,7 @@ class MyHomePageState extends State<MyHomePage> {
                           style: TextStyle(fontSize: 18, color: Colors.black)),
                       onChanged: (String newValue) {
                         print(newValue);
-                        navigateToSecondPage(context, newValue);
+                        navigateToStoresPage(context, newValue);
                       },
                       items: <String>[
                         'ปิ้งย่าง',
