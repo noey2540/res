@@ -64,9 +64,9 @@ class _AdminPageState extends State<AdminPage> {
                                         fontSize: 20, color: Colors.black)),
                                 // subtitle: Image.network(document["image"][0]),
                                 onTap: () {
-                                    navigateToAdminMenuPage(
-                                            context, document.documentID);
-                                  },
+                                  navigateToAdminMenuPage(
+                                      context, document.documentID);
+                                },
                               ),
                               ButtonTheme.bar(
                                 // make buttons use the appropriate styles for cards
