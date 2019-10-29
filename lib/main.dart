@@ -163,7 +163,7 @@ class MyHomePageState extends State<MyHomePage> {
         child: ListView(
           children: <Widget>[
             DrawerHeader(
-                child: Text('ส่วนของผู้ส่งสินค้า',
+                child: Text('ส่วนของผู้แลระบบ',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,

@@ -13,13 +13,7 @@ class StoreMenuPage extends StatefulWidget {
 }
 
 class StoreMenuPageState extends State<StoreMenuPage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -62,13 +56,8 @@ class StoreMenuPageState extends State<StoreMenuPage> {
                                   title: Text(document['name']),
                                   subtitle: Text(document['price'].toString()),
                                   leading: Image.network(document["image"][0]),
-                                  trailing: Text(
-                                    '$_counter',
-                                  ),
+                                  
                                 ),
-                                FlatButton(
-                                    onPressed: _incrementCounter,
-                                    child: Icon(Icons.add))
                               ],
                             ),
                           ),

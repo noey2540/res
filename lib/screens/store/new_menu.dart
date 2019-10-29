@@ -7,7 +7,7 @@ import 'package:location/location.dart';
 import '../../models/menu.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../services/image_service.dart';
-import './admin_menu_page.dart';
+import '../../admin_page.dart';
 
 class NewMenu extends StatefulWidget {
   NewMenu({Key key, this.docID}) : super(key: key);
@@ -65,7 +65,7 @@ class NewMenuState extends State<NewMenu> {
               child: Text('Ok'),
               onPressed: () {
                 Navigator.of(context).pop();
-                navigateToAdminMenuPage(context);
+                navigateToAdminPage(context);
               },
             ),
           ],
@@ -135,8 +135,8 @@ class NewMenuState extends State<NewMenu> {
   }
 }
 
-navigateToAdminMenuPage(BuildContext context) {
+navigateToAdminPage(BuildContext context) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return AdminMenuPage();
+    return AdminPage();
   }));
 }
