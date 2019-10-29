@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import './store_menu_page.dart';
+import '../../map.dart';
 
 class StoresPage extends StatefulWidget {
   StoresPage({Key key, this.category}) : super(key: key);
@@ -53,9 +54,13 @@ class StoresPageState extends State<StoresPage> {
                                   subtitle: Image.network(document["image"][0]),
                                   onTap: () {
                                     print(document['location'][0]);
-                                    //   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                    //   return SecondPage();
-                                    // }));
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return Map(
+                                          storeName: document['store_name'],
+                                          storeLat: document['location'][0],
+                                          storeLng: document['location'][1]);
+                                    }));
                                   },
                                 ),
                                 ButtonTheme.bar(
