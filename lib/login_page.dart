@@ -13,6 +13,29 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController ctrlUsername = TextEditingController();
+  TextEditingController ctrlPassword = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
+
+  void _onLogin() async {
+    final FormState form = _formKey.currentState;
+    if (_formKey.currentState.validate()) {
+      String username = ctrlUsername.text;
+      String password = ctrlPassword.text;
+
+      print(username);
+      print(password);
+
+      if (username.toLowerCase() == 'admin' &&
+          password.toLowerCase() == 'admin') {
+        Navigator.of(context).pop();
+                navigateToAdminPage(context);
+      } else {
+        print('Invalid username/password');
+      }
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +53,8 @@ class _LoginPageState extends State<LoginPage> {
                           colors: [Colors.yellow[100], Colors.green[100]])),
                   margin: EdgeInsets.all(32),
                   padding: EdgeInsets.all(24),
+                  child: Form(
+              key: _formKey,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -38,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                       buildTextFieldPass(),
                       buildButtonSignIn(),
                     ],
-                  )),
+                  ))),
             )));
   }
 
@@ -48,6 +73,7 @@ class _LoginPageState extends State<LoginPage> {
         decoration: BoxDecoration(
             color: Colors.yellow[50], borderRadius: BorderRadius.circular(16)),
         child: TextField(
+            controller: ctrlUsername,
             decoration: InputDecoration.collapsed(hintText: "USERNAME"),
             style: TextStyle(fontSize: 18)));
   }
@@ -59,6 +85,7 @@ class _LoginPageState extends State<LoginPage> {
         decoration: BoxDecoration(
             color: Colors.yellow[50], borderRadius: BorderRadius.circular(16)),
         child: TextField(
+            controller: ctrlPassword,
             obscureText: true,
             decoration: InputDecoration.collapsed(hintText: "PASSWORD"),
             style: TextStyle(fontSize: 18)));
@@ -72,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 18, color: Colors.white)),
             onPressed: () {
-              navigateToAdminPage(context);
+              _onLogin() ;
             }),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16), color: Colors.green[200]),

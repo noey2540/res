@@ -151,6 +151,16 @@ class NewStoreState extends State<NewStore> {
         body: SafeArea(
           top: false,
           bottom: false,
+          child: Container(
+            color: Colors.green[50],
+            child: Center(
+              child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      gradient: LinearGradient(
+                          colors: [Colors.yellow[100], Colors.green[100]])),
+                  margin: EdgeInsets.all(32),
+                  padding: EdgeInsets.all(24),
           child: Form(
             key: _formKey,
             child: ListView(
@@ -229,7 +239,9 @@ class NewStoreState extends State<NewStore> {
               ],
             ),
           ),
-        ));
+        )),
+        ))
+    );
   }
 }
 

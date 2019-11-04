@@ -2,12 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../order_page.dart';
+
 
 class StoreMenuPage extends StatefulWidget {
-  StoreMenuPage({Key key, this.docID}) : super(key: key);
+  StoreMenuPage({Key key, this.docID,this.store_name}) : super(key: key);
 
   final String docID;
+  final String store_name;
 
   StoreMenuPageState createState() => StoreMenuPageState();
 }
@@ -20,7 +21,7 @@ class StoreMenuPageState extends State<StoreMenuPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.green[300],
-          title: Text('เมนูอาหาร'),
+          title: Text(widget.store_name),
         ),
         body: Container(
             color: Colors.green[50],
@@ -68,14 +69,7 @@ class StoreMenuPageState extends State<StoreMenuPage> {
                 }
               },
             )),
-        floatingActionButton: FloatingActionButton(
-            child: Text("Next", style: TextStyle(color: Colors.white)),
-            onPressed: () => navigateToOrderPage(context)));
+        );
   }
 }
 
-navigateToOrderPage(BuildContext context) {
-  Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return OrderPage();
-  }));
-}

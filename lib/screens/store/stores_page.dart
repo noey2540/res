@@ -58,6 +58,7 @@ class StoresPageState extends State<StoresPage> {
                                         MaterialPageRoute(builder: (context) {
                                       return Map(
                                           storeName: document['store_name'],
+                                          storeCate: document['store_category'],
                                           storeLat: document['location'][0],
                                           storeLng: document['location'][1]);
                                     }));
@@ -71,7 +72,7 @@ class StoresPageState extends State<StoresPage> {
                                         child: const Text('MENU'),
                                         onPressed: () {
                                           navigateToMenuPage(
-                                              context, document.documentID);
+                                              context, document.documentID, document['store_name']);
                                         },
                                       ),
                                     ],
@@ -89,8 +90,8 @@ class StoresPageState extends State<StoresPage> {
   }
 }
 
-navigateToMenuPage(BuildContext context, String docID) {
+navigateToMenuPage(BuildContext context, String docID,String store_name) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return StoreMenuPage(docID: docID);
+    return StoreMenuPage(docID: docID,store_name: store_name);
   }));
 }

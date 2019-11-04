@@ -91,6 +91,16 @@ class UpdateMenuState extends State<UpdateMenu> {
               return SafeArea(
                   top: false,
                   bottom: false,
+                   child: Container(
+            color: Colors.green[50],
+            child: Center(
+              child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      gradient: LinearGradient(
+                          colors: [Colors.yellow[100], Colors.green[100]])),
+                  margin: EdgeInsets.all(32),
+                  padding: EdgeInsets.all(24),
                   child: Form(
                       key: _formKey,
                       // color: Colors.green[50],
@@ -99,7 +109,7 @@ class UpdateMenuState extends State<UpdateMenu> {
                           TextFormField(
                             initialValue: document['name'],
                             decoration: InputDecoration(
-                              icon: Icon(Icons.account_balance),
+                              icon: Icon(Icons.fastfood),
                               hintText: 'กรุณากรอกชื่ออาหาร',
                               labelText: 'ชื่ออาหาร',
                             ),
@@ -108,7 +118,7 @@ class UpdateMenuState extends State<UpdateMenu> {
                           TextFormField(
                             initialValue: document['price'].toString(),
                             decoration: InputDecoration(
-                              icon: Icon(Icons.account_balance),
+                              icon: Icon(Icons.attach_money),
                               hintText: 'กรุณากรอกราคา',
                               labelText: 'ราคา',
                             ),
@@ -118,7 +128,11 @@ class UpdateMenuState extends State<UpdateMenu> {
                           Row(children: <Widget>[
                             RaisedButton(
                                 onPressed: getImage,
-                                child: Icon(Icons.add_a_photo)),
+                                child: Icon(Icons.add_a_photo),
+                                color: Colors.green[200],),
+                          ]),
+                          Row(children: <Widget>[
+                          
                             _image == null
                                 ? Image.network(
                                     document["image"][0],
@@ -127,6 +141,7 @@ class UpdateMenuState extends State<UpdateMenu> {
                                   )
                                 : Image.file(
                                     _image,
+                                    alignment: Alignment.center,
                                     width: 250,
                                     height: 150,
                                   )
@@ -134,11 +149,12 @@ class UpdateMenuState extends State<UpdateMenu> {
                           Container(
                               padding: EdgeInsets.only(),
                               child: RaisedButton(
-                                child: Text('Update'),
+                                child: Text('Update',style: TextStyle(fontSize: 18, color: Colors.white)),
+                                 color: Colors.green[200],
                                 onPressed: _onUpdate,
                               )),
                         ],
-                      )));
+                      ))))));
             }));
   }
 }

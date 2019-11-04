@@ -23,10 +23,10 @@ class _AdminPageState extends State<AdminPage> {
     return Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.green[300],
-            title: Text('Admin'),
+            title: Text('Restaurants'),
             actions: <Widget>[
               FlatButton(
-                child: const Text('Input Store'),
+                child: const Text('Input'),
                 onPressed: () {
                   navigateToNewStorePage(context);
                 },

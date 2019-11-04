@@ -147,6 +147,16 @@ class UpdateStoreState extends State<UpdateStore> {
         body: SafeArea(
             top: false,
             bottom: false,
+             child: Container(
+            color: Colors.green[50],
+            child: Center(
+              child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      gradient: LinearGradient(
+                          colors: [Colors.yellow[100], Colors.green[100]])),
+                  margin: EdgeInsets.all(32),
+                  padding: EdgeInsets.all(24),
             child: Form(
               key: _formKey,
               child: StreamBuilder(
@@ -171,9 +181,10 @@ class UpdateStoreState extends State<UpdateStore> {
                         onSaved: (val) => newStore.store_name = val,
                       ),
                       Row(children: <Widget>[
-                        Icon(Icons.beenhere),
-                        Text('    ประเภทร้านอาหาร                  '),
+                        Icon(Icons.playlist_add_check),
+                        Text('    ประเภทร้านอาหาร'),
                         DropdownButton<String>(
+                          
                           value: document['store_category'],
                           onChanged: (String newValue) {
                             setState(() {
@@ -198,7 +209,11 @@ class UpdateStoreState extends State<UpdateStore> {
                       Row(children: <Widget>[
                         RaisedButton(
                             onPressed: getImage,
-                            child: Icon(Icons.add_a_photo)),
+                            child: Icon(Icons.add_a_photo),
+                            color: Colors.green[200],),
+                        
+                      ]),
+                      Row(children: <Widget>[
                         _image == null
                             ? Image.network(
                                 document["image"][0],
@@ -215,6 +230,7 @@ class UpdateStoreState extends State<UpdateStore> {
                         children: <Widget>[
                           RaisedButton(
                               child: Text('เปลี่ยนตำแหน่งที่ตั้ง'),
+                              color: Colors.green[200],
                               onPressed: () {
                                 _initPlatformState();
                               }),
@@ -233,14 +249,15 @@ class UpdateStoreState extends State<UpdateStore> {
                       Container(
                           padding: EdgeInsets.only(),
                           child: RaisedButton(
-                            child: Text('Update'),
+                            child: Text('Update',style: TextStyle(fontSize: 18, color: Colors.white)),
+                            color: Colors.green[200],
                             onPressed: _onUpdate,
                           )),
                     ],
                   );
                 },
               ),
-            )));
+            ))))));
   }
 }
 
