@@ -47,12 +47,32 @@ class StoresPageState extends State<StoresPage> {
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
                                 ListTile(
-                                  leading: Icon(Icons.location_on),
+                                  // leading: Icon(Icons.location_on),
                                   title: Text(document['store_name'],
                                       style: TextStyle(
                                           fontSize: 20, color: Colors.black)),
-                                  subtitle: Image.network(document["image"][0]),
-                                  onTap: () {
+                                  subtitle: Image.network(document["image"][0],width: 300,
+                                height: 200,),
+                                  // onTap: () {
+                                  //   print(document['location'][0]);
+                                  //   Navigator.push(context,
+                                  //       MaterialPageRoute(builder: (context) {
+                                  //     return Map(
+                                  //         storeName: document['store_name'],
+                                  //         storeCate: document['store_category'],
+                                  //         storeLat: document['location'][0],
+                                  //         storeLng: document['location'][1]);
+                                  //   }));
+                                  // },
+                                ),
+                                ButtonTheme.bar(
+                                  // make buttons use the appropriate styles for cards
+                                  child: ButtonBar(
+                                    children: <Widget>[
+                                      FlatButton(
+                                        child: Icon(Icons.location_on),
+                                        
+                                        onPressed: () {
                                     print(document['location'][0]);
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) {
@@ -63,11 +83,7 @@ class StoresPageState extends State<StoresPage> {
                                           storeLng: document['location'][1]);
                                     }));
                                   },
-                                ),
-                                ButtonTheme.bar(
-                                  // make buttons use the appropriate styles for cards
-                                  child: ButtonBar(
-                                    children: <Widget>[
+                                      ),
                                       FlatButton(
                                         child: const Text('MENU'),
                                         onPressed: () {

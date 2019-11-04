@@ -133,8 +133,8 @@ class SearchPageState extends State<SearchPage> {
                     titleSection("โปรเด็ด ลดจัดหนัก50%"),
                     titleSection("จัดเต็ม ซื้อ1แถม1"),
                     titleSection("ร้านดัง ต้องสั่ง!!"),
-                  ]
-
+                  ]),
+                  
             ],
           )),
       
