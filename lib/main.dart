@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import './screens/store/stores_page.dart';
 import './login_page.dart';
-import './screens/store/stores_page.dart';
 import './search_page.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -30,7 +29,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class MyHomePageState extends State<MyHomePage> {
-  @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
