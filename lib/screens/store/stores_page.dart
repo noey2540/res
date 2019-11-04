@@ -14,11 +14,11 @@ class StoresPageState extends State<StoresPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.green[300],
+          backgroundColor: Colors.pink[300],
           title: Text(widget.category),
         ),
         body: Container(
-            color: Colors.green[50],
+            color: Colors.pink[50],
             child: StreamBuilder<QuerySnapshot>(
               stream: Firestore.instance
                   .collection('store')
@@ -40,8 +40,8 @@ class StoresPageState extends State<StoresPage> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(16),
                                 gradient: LinearGradient(colors: [
-                                  Colors.yellow[100],
-                                  Colors.green[100]
+                                  Colors.purple[100],
+                                  Colors.pink[100]
                                 ])),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,

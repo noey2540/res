@@ -126,6 +126,7 @@ class NewStoreState extends State<NewStore> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor:Colors.pink[50],
           title: Text('Input Success'),
           actions: <Widget>[
             FlatButton(
@@ -145,20 +146,20 @@ class NewStoreState extends State<NewStore> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.green[300],
+          backgroundColor: Colors.pink[300],
           title: Text('Input Data'),
         ),
         body: SafeArea(
           top: false,
           bottom: false,
           child: Container(
-            color: Colors.green[50],
+            color: Colors.pink[50],
             child: Center(
               child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       gradient: LinearGradient(
-                          colors: [Colors.yellow[100], Colors.green[100]])),
+                          colors: [Colors.purple[100], Colors.pink[100]])),
                   margin: EdgeInsets.all(32),
                   padding: EdgeInsets.all(24),
           child: Form(
@@ -175,8 +176,9 @@ class NewStoreState extends State<NewStore> {
                 ),
                 Row(children: <Widget>[
                   Icon(Icons.beenhere),
-                  Text('ประเภทร้านอาหาร'),
+                  Text('ประเภทร้านอาหาร  '),
                   DropdownButton<String>(
+                    
                     value: dropdownValue,
                     onChanged: (String newValue) {
                       setState(() {
@@ -202,6 +204,7 @@ class NewStoreState extends State<NewStore> {
                   RaisedButton(
                     onPressed: getImage,
                     child: Icon(Icons.add_a_photo),
+                    color: Colors.pink[200],
                   ),
                   Center(
                     child: _image == null
@@ -216,6 +219,7 @@ class NewStoreState extends State<NewStore> {
                 Row(children: <Widget>[
                   RaisedButton(
                       child: Text('เรียกตำแหน่งที่ตั้ง'),
+                      color: Colors.pink[200],
                       onPressed: () {
                         _initPlatformState();
                       }),
@@ -233,7 +237,8 @@ class NewStoreState extends State<NewStore> {
                 Container(
                     padding: EdgeInsets.only(),
                     child: RaisedButton(
-                      child: Text('Submit'),
+                      child: Text('Submit',style: TextStyle(fontSize: 18, color: Colors.white)),
+                                 color: Colors.pink[200],
                       onPressed: _onSubmit,
                     )),
               ],

@@ -22,7 +22,7 @@ class _AdminPageState extends State<AdminPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Colors.green[300],
+            backgroundColor: Colors.pink[300],
             title: Text('Restaurants'),
             actions: <Widget>[
               FlatButton(
@@ -33,7 +33,7 @@ class _AdminPageState extends State<AdminPage> {
               )
             ]),
         body: Container(
-          color: Colors.green[50],
+          color: Colors.pink[50],
           child: StreamBuilder<QuerySnapshot>(
             stream: Firestore.instance.collection('store').snapshots(),
             builder:
@@ -52,8 +52,8 @@ class _AdminPageState extends State<AdminPage> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16),
                               gradient: LinearGradient(colors: [
-                                Colors.yellow[100],
-                                Colors.green[100]
+                                Colors.purple[100],
+                                Colors.pink[100]
                               ])),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -65,7 +65,7 @@ class _AdminPageState extends State<AdminPage> {
                                 // subtitle: Image.network(document["image"][0]),
                                 onTap: () {
                                   navigateToAdminMenuPage(
-                                      context, document.documentID);
+                                      context, document.documentID,document['store_name']);
                                 },
                               ),
                               ButtonTheme.bar(
@@ -114,8 +114,8 @@ navigateToNewStorePage(
   }));
 }
 
-navigateToAdminMenuPage(BuildContext context, String docID) {
+navigateToAdminMenuPage(BuildContext context, String docID,String store_name) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return AdminMenuPage(docID: docID);
+    return AdminMenuPage(docID: docID,store_name: store_name);
   }));
 }

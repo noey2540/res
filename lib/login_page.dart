@@ -40,17 +40,17 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.green[300],
+          backgroundColor: Colors.pink[300],
           title: Text('เข้าสู่ระบบ'),
         ),
         body: Container(
-            color: Colors.green[50],
+            color: Colors.pink[50],
             child: Center(
               child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       gradient: LinearGradient(
-                          colors: [Colors.yellow[100], Colors.green[100]])),
+                          colors: [Colors.purple[100], Colors.pink[100]])),
                   margin: EdgeInsets.all(32),
                   padding: EdgeInsets.all(24),
                   child: Form(
@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
-            color: Colors.yellow[50], borderRadius: BorderRadius.circular(16)),
+            color: Colors.purple[50], borderRadius: BorderRadius.circular(16)),
         child: TextField(
             controller: ctrlUsername,
             decoration: InputDecoration.collapsed(hintText: "USERNAME"),
@@ -83,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
         padding: EdgeInsets.all(12),
         margin: EdgeInsets.only(top: 12),
         decoration: BoxDecoration(
-            color: Colors.yellow[50], borderRadius: BorderRadius.circular(16)),
+            color: Colors.purple[50], borderRadius: BorderRadius.circular(16)),
         child: TextField(
             controller: ctrlPassword,
             obscureText: true,
@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
               _onLogin() ;
             }),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16), color: Colors.green[200]),
+            borderRadius: BorderRadius.circular(16), color: Colors.pink[200]),
         margin: EdgeInsets.only(top: 16),
         padding: EdgeInsets.all(12));
   }

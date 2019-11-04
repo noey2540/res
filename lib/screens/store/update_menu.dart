@@ -10,8 +10,9 @@ import 'package:flutter/services.dart';
 import './admin_menu_page.dart';
 
 class UpdateMenu extends StatefulWidget {
-  UpdateMenu({Key key, this.docID}) : super(key: key);
+  UpdateMenu({Key key, this.docID,this.name}) : super(key: key);
   final String docID;
+  final String name;
   UpdateMenuState createState() => UpdateMenuState();
 }
 
@@ -56,6 +57,7 @@ class UpdateMenuState extends State<UpdateMenu> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor:Colors.pink[50],
           title: Text('Update Success'),
           actions: <Widget>[
             FlatButton(
@@ -75,8 +77,8 @@ class UpdateMenuState extends State<UpdateMenu> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.green[300],
-          title: Text('UpdateMenu'),
+          backgroundColor: Colors.pink[300],
+          title: Text(widget.name),
         ),
         body: StreamBuilder(
             stream: Firestore.instance
@@ -92,13 +94,13 @@ class UpdateMenuState extends State<UpdateMenu> {
                   top: false,
                   bottom: false,
                    child: Container(
-            color: Colors.green[50],
+            color: Colors.pink[50],
             child: Center(
               child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       gradient: LinearGradient(
-                          colors: [Colors.yellow[100], Colors.green[100]])),
+                          colors: [Colors.purple[100], Colors.pink[100]])),
                   margin: EdgeInsets.all(32),
                   padding: EdgeInsets.all(24),
                   child: Form(
@@ -129,7 +131,7 @@ class UpdateMenuState extends State<UpdateMenu> {
                             RaisedButton(
                                 onPressed: getImage,
                                 child: Icon(Icons.add_a_photo),
-                                color: Colors.green[200],),
+                                color: Colors.pink[200],),
                           ]),
                           Row(children: <Widget>[
                           
@@ -150,7 +152,7 @@ class UpdateMenuState extends State<UpdateMenu> {
                               padding: EdgeInsets.only(),
                               child: RaisedButton(
                                 child: Text('Update',style: TextStyle(fontSize: 18, color: Colors.white)),
-                                 color: Colors.green[200],
+                                 color: Colors.pink[200],
                                 onPressed: _onUpdate,
                               )),
                         ],

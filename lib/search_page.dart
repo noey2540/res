@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import './screens/store/stores_page.dart';
-import './login_page.dart';
 import './screens/store/stores_page.dart';
 
 
@@ -102,10 +101,10 @@ class SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('FOODDEE'),
+        title: Text('LALLABUY'),
       ),
       body: Container(
-          color: Colors.green[50],
+          color: Colors.pink[50],
           child: ListView(
             children: <Widget>[
               Column(
@@ -134,7 +133,8 @@ class SearchPageState extends State<SearchPage> {
                     titleSection("โปรเด็ด ลดจัดหนัก50%"),
                     titleSection("จัดเต็ม ซื้อ1แถม1"),
                     titleSection("ร้านดัง ต้องสั่ง!!"),
-                  ])
+                  ]
+
             ],
           )),
       

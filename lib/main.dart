@@ -9,9 +9,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'FOODDEE',
+      title: 'LALLABUY',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.pink,
       ),
       home: MyHomePage(title: 'Homepage'),
       debugShowCheckedModeBanner: false,
@@ -33,16 +33,16 @@ class MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('FOODDEE'),
+        title: Text('LALLABUY'),
       ),
       body: Container(
-            color: Colors.green[50],
+            color: Colors.pink[50],
             child: Center(
               child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       gradient: LinearGradient(
-                          colors: [Colors.yellow[100], Colors.green[100]])),
+                          colors: [Colors.purple[100], Colors.pink[100]])),
                   margin: EdgeInsets.all(32),
                   padding: EdgeInsets.all(24),
                   child: Column(
@@ -67,7 +67,7 @@ class MyHomePageState extends State<MyHomePage> {
               navigateToLoginPage(context);
             }),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16), color: Colors.green[200]),
+            borderRadius: BorderRadius.circular(16), color: Colors.pink[200]),
         margin: EdgeInsets.only(top: 16),
         padding: EdgeInsets.all(12));
   }
@@ -82,7 +82,7 @@ class MyHomePageState extends State<MyHomePage> {
               navigateToSearchPage(context);
             }),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16), color: Colors.green[200]),
+            borderRadius: BorderRadius.circular(16), color: Colors.pink[200]),
         margin: EdgeInsets.only(top: 16),
         padding: EdgeInsets.all(12));
   }

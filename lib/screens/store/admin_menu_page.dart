@@ -5,10 +5,11 @@ import './update_menu.dart';
 
 class AdminMenuPage extends StatefulWidget {
   AdminMenuPage({
-    Key key, this.docID
+    Key key, this.docID,this.store_name
   }) : super(key: key);
 
   final String docID;
+  final String store_name;
   _AdminMenuPageState createState() => _AdminMenuPageState();
 }
 
@@ -22,8 +23,8 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Colors.green[300],
-            title: Text('Menu'),
+            backgroundColor: Colors.pink[300],
+            title: Text(widget.store_name),
             actions: <Widget>[
               FlatButton(
                 child: const Text('Input Menu'),
@@ -33,7 +34,7 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
               )
             ]),
         body: Container(
-          color: Colors.green[50],
+          color: Colors.pink[50],
           child: StreamBuilder<QuerySnapshot>(
               stream: Firestore.instance
                   .collection('menus')
@@ -56,8 +57,8 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(16),
                                 gradient: LinearGradient(colors: [
-                                  Colors.yellow[100],
-                                  Colors.green[100]
+                                  Colors.purple[100],
+                                  Colors.pink[100]
                                 ])),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
@@ -76,7 +77,7 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
                                       child: const Text('Update'),
                                       onPressed: () {
                                         navigateToUpdateMenuPage(
-                                            context, document.documentID);
+                                            context, document.documentID,document['name']);
                                       },
                                     ),
                                     FlatButton(
@@ -114,8 +115,8 @@ navigateToNewMenuPage(
   }));
 }
 
-navigateToUpdateMenuPage(BuildContext context, String docID) {
+navigateToUpdateMenuPage(BuildContext context, String docID,String name) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return UpdateMenu(docID: docID);
+    return UpdateMenu(docID: docID,name: name);
   }));
 }

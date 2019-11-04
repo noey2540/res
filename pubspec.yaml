@@ -39,8 +39,8 @@ dev_dependencies:
   flutter_native_splash: ^0.1.9
 
 flutter_native_splash:
-  image: assets/logo.png
-  color: "42a5f5"
+  image: assets/lallabuy.png
+  color: "#FFC1C1"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
