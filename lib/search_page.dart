@@ -43,7 +43,7 @@ class SearchPageState extends State<SearchPage> {
     );
   }
 
-  Widget title2Section() {
+  Widget title2Section(String title) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -68,7 +68,7 @@ class SearchPageState extends State<SearchPage> {
     );
   }
 
-  Widget title3Section() {
+  Widget title3Section(String title) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -131,8 +131,8 @@ class SearchPageState extends State<SearchPage> {
                       }).toList(),
                     ),
                     titleSection("โปรเด็ด ลดจัดหนัก50%"),
-                    titleSection("จัดเต็ม ซื้อ1แถม1"),
-                    titleSection("ร้านดัง ต้องสั่ง!!"),
+                    title2Section("จัดเต็ม ซื้อ1แถม1"),
+                    title3Section("ร้านดัง ต้องสั่ง!!"),
                   ]),
                   
             ],
