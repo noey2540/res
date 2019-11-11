@@ -51,13 +51,18 @@ class StoreMenuPageState extends State<StoreMenuPage> {
                                   Colors.pink[100]
                                 ])),
                             child: Column(
-                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
+                                ListTile(
+                                  
+                                  // title: Text(document['name']),
+                                  // subtitle: Text(document['price'].toString()),
+                                  title: Image.network(document["image"][0],width: 200,
+                                height: 150),
+                                ),
                                 ListTile(
                                   title: Text(document['name']),
                                   subtitle: Text(document['price'].toString()),
-                                  leading: Image.network(document["image"][0]),
-                                  
                                 ),
                               ],
                             ),
