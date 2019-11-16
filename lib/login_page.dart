@@ -27,8 +27,8 @@ class _LoginPageState extends State<LoginPage> {
       print(username);
       print(password);
 
-      if (username.toLowerCase() == 'admin' &&
-          password.toLowerCase() == 'admin') {
+      if (username.toLowerCase() == 'sirilak' &&
+          password.toLowerCase() == 'admin2324') {
         Navigator.of(context).pop();
                 navigateToAdminPage(context);
       } else {
