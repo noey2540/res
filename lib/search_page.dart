@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import './screens/store/stores_page.dart';
-import './screens/store/stores_page.dart';
+import './screens/search_map.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:location/location.dart';
+import 'dart:async';
 
 
 class SearchPage extends StatefulWidget {
@@ -12,6 +16,66 @@ class SearchPage extends StatefulWidget {
 }
 
 class SearchPageState extends State<SearchPage> {
+  LocationData _startLocation;
+  LocationData _currentLocation;
+
+  StreamSubscription<LocationData> _locationSubscription;
+
+  Location _locationService = Location();
+  bool _permission = false;
+  String error;
+
+  bool currentWidget = true;
+   @override
+  void initState() {
+    super.initState();
+
+    _initPlatformState();
+  }
+  _initPlatformState() async {
+    await _locationService.changeSettings(
+        accuracy: LocationAccuracy.HIGH, interval: 1000);
+
+    LocationData location;
+    try {
+      bool serviceStatus = await _locationService.serviceEnabled();
+      print("Service status: $serviceStatus");
+      if (serviceStatus) {
+        _permission = await _locationService.requestPermission();
+        print("Permission: $_permission");
+        if (_permission) {
+          location = await _locationService.getLocation();
+
+          _locationSubscription = _locationService
+              .onLocationChanged()
+              .listen((LocationData result) async {
+            setState(() {
+              _currentLocation = result;
+            });
+          });
+          print(_currentLocation.latitude);
+        }
+      } else {
+        bool serviceStatusResult = await _locationService.requestService();
+        print("Service status activated after request: $serviceStatusResult");
+        if (serviceStatusResult) {
+          _initPlatformState();
+        }
+      }
+    } on PlatformException catch (e) {
+      print(e);
+      if (e.code == 'PERMISSION_DENIED') {
+        error = e.message;
+      } else if (e.code == 'SERVICE_STATUS_ERROR') {
+        error = e.message;
+      }
+      location = null;
+    }
+
+    setState(() {
+      _startLocation = location;
+    });
+  }
   Widget _buildCardListView(String imagePath) {
     return Card(
       child: Image.network(imagePath),
@@ -107,7 +171,25 @@ class SearchPageState extends State<SearchPage> {
       ),
       body: Container(
           color: Colors.pink[50],
-          child: ListView(
+          child: 
+          StreamBuilder<QuerySnapshot>(
+              stream: Firestore.instance
+                  .collection('store')
+                  .snapshots(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasError) return Text('Error: ${snapshot.error}');
+                switch (snapshot.connectionState) {
+                  case ConnectionState.waiting:
+                    return Text('Loading...');
+                  default:
+                    return 
+                    ListView(
+                      children: snapshot.data.documents
+                          .map((DocumentSnapshot document) {
+                        return 
+                        Center(
+                          child: Column(
             children: <Widget>[
               Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -132,14 +214,50 @@ class SearchPageState extends State<SearchPage> {
                         );
                       }).toList(),
                     ),
+                    ButtonBar(
+                      children: <Widget>[
+                                  
+                                      FlatButton(
+                                        child: const Text('ค้นหาจากแผนที่' ,style:TextStyle(fontSize: 18)),
+                                        onPressed: () {
+                                          _initPlatformState();
+                                          print(_startLocation.latitude);
+                                          print(_startLocation.longitude);
+                                          Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return SearchMap(
+                                          hereLat: _startLocation.latitude,
+                                          hereLng: _startLocation.longitude,
+                                          
+                                          storeName: document['store_name'],
+                                          storeCate: document['store_category'],
+                                          storeLat: document['location'][0],
+                                          storeLng: document['location'][1],
+                                          docId: document.documentID
+                                          );
+                                    }));
+                                        },
+                                      ),
+                                    ],
+                    ),
                     titleSection("โปรเด็ด ลดจัดหนัก50%"),
                     title2Section("จัดเต็ม ซื้อ1แถม1"),
                     title3Section("ร้านดัง ต้องลอง!!"),
                   ]),
                   
             ],
-          )),
+            )
+                        );
+                        
+                }).toList(),  
+          );
+                }
+                }
+          ),
       
+    )
+    
+
     );
-  }
+    }
 }
