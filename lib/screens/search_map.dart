@@ -94,7 +94,7 @@ class SearchMapState extends State<SearchMap> {
     bearing: 15.0,
     tilt: 75.0
   );
-
+  
 void _setStyle(GoogleMapController controller) async {
     String value = await DefaultAssetBundle.of(context).loadString('assets/maps_style.json');
     controller.setMapStyle(value);
