@@ -6,10 +6,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:location/location.dart';
 import 'dart:async';
 
-
 class SearchPage extends StatefulWidget {
   SearchPage({Key key}) : super(key: key);
-
 
   @override
   SearchPageState createState() => SearchPageState();
@@ -26,12 +24,13 @@ class SearchPageState extends State<SearchPage> {
   String error;
 
   bool currentWidget = true;
-   @override
+  @override
   void initState() {
     super.initState();
 
     _initPlatformState();
   }
+
   _initPlatformState() async {
     await _locationService.changeSettings(
         accuracy: LocationAccuracy.HIGH, interval: 1000);
@@ -76,6 +75,7 @@ class SearchPageState extends State<SearchPage> {
       _startLocation = location;
     });
   }
+
   Widget _buildCardListView(String imagePath) {
     return Card(
       child: Image.network(imagePath),
@@ -166,98 +166,90 @@ class SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('LALLABUY'),
-      ),
-      body: Container(
+        appBar: AppBar(
+          title: Text('LALLABUY'),
+        ),
+        body: Container(
           color: Colors.pink[50],
           child: 
-          StreamBuilder<QuerySnapshot>(
-              stream: Firestore.instance
-                  .collection('store')
-                  .snapshots(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (snapshot.hasError) return Text('Error: ${snapshot.error}');
-                switch (snapshot.connectionState) {
-                  case ConnectionState.waiting:
-                    return Text('Loading...');
-                  default:
-                    return 
+          // StreamBuilder<QuerySnapshot>(
+          //     stream: Firestore.instance.collection('store').snapshots(),
+          //     builder: (BuildContext context,
+          //         AsyncSnapshot<QuerySnapshot> snapshot) {
+          //       if (snapshot.hasError) return Text('Error: ${snapshot.error}');
+          //       switch (snapshot.connectionState) {
+          //         case ConnectionState.waiting:
+          //           return Text('Loading...');
+          //         default:
+          //           return 
                     ListView(
-                      children: snapshot.data.documents
-                          .map((DocumentSnapshot document) {
-                        return 
+                      children: <Widget>[
+                      // children: snapshot.data.documents
+                      //     .map((DocumentSnapshot document) {
+                        // return 
                         Center(
                           child: Column(
-            children: <Widget>[
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
-                    DropdownButton<String>(
-                      hint: Text('ค้นหาประเภทร้านอาหาร',
-                          style: TextStyle(fontSize: 18, color: Colors.black)),
-                      onChanged: (String newValue) {
-                        print(newValue);
-                        navigateToStoresPage(context, newValue);
-                      },
-                      items: <String>[
-                        'ปิ้งย่าง',
-                        'ร้านอาหาร',
-                        'ร้านส้มตำ',
-                        'ร้านกาแฟและของหวาน',
-                        'ร้านน้ำชา'
-                      ].map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                    ),
-                    ButtonBar(
-                      children: <Widget>[
-                                  
-                                      FlatButton(
-                                        child: const Text('ค้นหาจากแผนที่' ,style:TextStyle(fontSize: 18)),
-                                        onPressed: () {
-                                          _initPlatformState();
-                                          print(_startLocation.latitude);
-                                          print(_startLocation.longitude);
-                                          Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return SearchMap(
-                                          hereLat: _startLocation.latitude,
-                                          hereLng: _startLocation.longitude,
-                                          
-                                          storeName: document['store_name'],
-                                          storeCate: document['store_category'],
-                                          storeLat: document['location'][0],
-                                          storeLng: document['location'][1],
-                                          docId: document.documentID
-                                          );
-                                    }));
-                                        },
-                                      ),
-                                    ],
-                    ),
-                    titleSection("โปรเด็ด ลดจัดหนัก50%"),
-                    title2Section("จัดเต็ม ซื้อ1แถม1"),
-                    title3Section("ร้านดัง ต้องลอง!!"),
-                  ]),
-                  
-            ],
-            )
-                        );
-                        
-                }).toList(),  
-          );
-                }
-                }
-          ),
-      
-    )
-    
-
-    );
-    }
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: <Widget>[
+                                DropdownButton<String>(
+                                  hint: Text('ค้นหาประเภทร้านอาหาร',
+                                      style: TextStyle(
+                                          fontSize: 18, color: Colors.black)),
+                                  onChanged: (String newValue) {
+                                    print(newValue);
+                                    navigateToStoresPage(context, newValue);
+                                  },
+                                  items: <String>[
+                                    'ปิ้งย่าง',
+                                    'ร้านอาหาร',
+                                    'ร้านส้มตำ',
+                                    'ร้านกาแฟและของหวาน',
+                                    'ร้านน้ำชา'
+                                  ].map<DropdownMenuItem<String>>(
+                                      (String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                ),
+                                ButtonBar(
+                                  children: <Widget>[
+                                    FlatButton(
+                                      child: const Text('ค้นหาจากแผนที่',
+                                          style: TextStyle(fontSize: 18)),
+                                      onPressed: () {
+                                        _initPlatformState();
+                                        print(_startLocation.latitude);
+                                        print(_startLocation.longitude);
+                                        Navigator.push(context,
+                                            MaterialPageRoute(
+                                                builder: (context) {
+                                          return SearchMap(
+                                              hereLat: _startLocation.latitude,
+                                              hereLng: _startLocation.longitude,
+                                              // storeName: document['store_name'],
+                                              // storeCate:
+                                              //     document['store_category'],
+                                              // storeLat: document['location'][0],
+                                              // storeLng: document['location'][1],
+                                              // docId: document.documentID
+                                              );
+                                        }));
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                titleSection("โปรเด็ด ลดจัดหนัก50%"),
+                                title2Section("จัดเต็ม ซื้อ1แถม1"),
+                                title3Section("ร้านดัง ต้องลอง!!"),
+                              ]),
+                        )
+                      // }).toList()
+                      ])
+              //   }
+              // }
+              // ),
+        ));
+  }
 }
