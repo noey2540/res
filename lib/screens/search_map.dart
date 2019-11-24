@@ -78,8 +78,8 @@ class SearchMapState extends State<SearchMap> {
   static const String _API_KEY = 'AIzaSyBrgtqUUIw_Axob1JrHARoTN7VilA1QTm0';
   static const String baseUrl =
       "https://maps.googleapis.com/maps/api/place/nearbysearch/json";
-  static double latitude = 14.019385;
-  static double longitude = 99.992302;
+  static double latitude = 14.024738;
+  static double longitude = 99.97687;
   Error error;
   List<Result> places;
   bool searching = true;
@@ -105,7 +105,7 @@ void _setStyle(GoogleMapController controller) async {
       markers.clear();
     });
     String url =
-        '$baseUrl?key=$_API_KEY&location=$latitude,$longitude&radius=5000&keyword=${keyword}';
+        '$baseUrl?key=$_API_KEY&location=$latitude,$longitude&radius=2000&keyword=${keyword}';
     print(url);
     final response = await http.get(url);
 
