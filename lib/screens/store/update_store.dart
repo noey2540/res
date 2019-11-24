@@ -10,13 +10,14 @@ import 'package:flutter/services.dart';
 import '../../admin_page.dart';
 
 class UpdateStore extends StatefulWidget {
-  UpdateStore({Key key, this.docID}) : super(key: key);
+  UpdateStore({Key key, this.docID,this.store_name}) : super(key: key);
   final String docID;
+  final String store_name;
   UpdateStoreState createState() => UpdateStoreState();
 }
 
 class UpdateStoreState extends State<UpdateStore> {
-  String dropdownValue = '';
+  String dropdownValue = 'ปิ้งย่าง';
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   File _image;
 
@@ -108,7 +109,7 @@ class UpdateStoreState extends State<UpdateStore> {
     if (imgUrl.isNotEmpty) {
       Firestore.instance.collection('store').document(widget.docID).updateData({
         'store_name': newStore.store_name,
-        'store_category': newStore.store_category,
+        // 'store_category': newStore.store_category,
         'image': [imgUrl],
         'location': [_startLocation.latitude, _startLocation.longitude]
       });
@@ -123,7 +124,7 @@ class UpdateStoreState extends State<UpdateStore> {
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor:Colors.pink[50],
-          title: Text('Update Success'),
+          title: Text('Update Store Success'),
           actions: <Widget>[
             FlatButton(
               child: Text('Ok'),
@@ -143,7 +144,7 @@ class UpdateStoreState extends State<UpdateStore> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.pink[300],
-          title: Text('UpdateStore'),
+          title: Text(widget.store_name),
         ),
         body: SafeArea(
             top: false,

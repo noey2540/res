@@ -8,6 +8,7 @@ import '../../models/menu.dart';
 import '../../services/image_service.dart';
 import 'package:flutter/services.dart';
 import './admin_menu_page.dart';
+import '../../admin_page.dart';
 
 class UpdateMenu extends StatefulWidget {
   UpdateMenu({Key key, this.docID,this.name}) : super(key: key);
@@ -32,7 +33,7 @@ class UpdateMenuState extends State<UpdateMenu> {
 
   void _onUpdate() async {
     final FormState form = _formKey.currentState;
-    form.save(); //This invokes each onSaved event
+    form.save(); 
 
     print('Form save called, newContact is now up to date...');
     print('Name: ${newMenu.name}');
@@ -54,17 +55,17 @@ class UpdateMenuState extends State<UpdateMenu> {
   Future<void> _alertupdate() async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: false, 
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor:Colors.pink[50],
-          title: Text('Update Success'),
+          title: Text('Update Menu Success'),
           actions: <Widget>[
             FlatButton(
               child: Text('Ok'),
               onPressed: () {
                 Navigator.of(context).pop();
-                navigateToAdminMenuPage(context);
+                navigateToAdminPage(context);
               },
             ),
           ],
@@ -164,5 +165,10 @@ class UpdateMenuState extends State<UpdateMenu> {
 navigateToAdminMenuPage(BuildContext context) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
     return AdminMenuPage();
+  }));
+}
+navigateToAdminPage(BuildContext context) {
+  Navigator.push(context, MaterialPageRoute(builder: (context) {
+    return AdminPage();
   }));
 }

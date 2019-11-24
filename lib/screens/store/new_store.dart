@@ -206,15 +206,17 @@ class NewStoreState extends State<NewStore> {
                     child: Icon(Icons.add_a_photo),
                     color: Colors.pink[200],
                   ),
-                  Center(
-                    child: _image == null
+                ]),
+                Row(children: <Widget>[
+                  
+                     _image == null
                         ? Text('No image selected.')
                         : Image.file(
                             _image,
                             width: 250,
                             height: 150,
                           ),
-                  ),
+                  
                 ]),
                 Row(children: <Widget>[
                   RaisedButton(

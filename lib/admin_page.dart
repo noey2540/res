@@ -6,9 +6,10 @@ import './screens/store/new_store.dart';
 
 class AdminPage extends StatefulWidget {
   AdminPage({
-    Key key,
+    Key key, this.docID,this.store_name
   }) : super(key: key);
-
+   final String docID;
+  final String store_name;
   _AdminPageState createState() => _AdminPageState();
 }
 
@@ -76,7 +77,7 @@ class _AdminPageState extends State<AdminPage> {
                                       child: const Text('Update'),
                                       onPressed: () {
                                         navigateToUpdateStorePage(
-                                            context, document.documentID);
+                                            context, document.documentID,document['store_name']);
                                       },
                                     ),
                                     FlatButton(
@@ -100,9 +101,9 @@ class _AdminPageState extends State<AdminPage> {
   }
 }
 
-navigateToUpdateStorePage(BuildContext context, String docID) {
+navigateToUpdateStorePage(BuildContext context, String docID, String store_name) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return UpdateStore(docID: docID);
+    return UpdateStore(docID: docID,store_name: store_name);
   }));
 }
 

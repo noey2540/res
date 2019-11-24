@@ -105,7 +105,7 @@ void _setStyle(GoogleMapController controller) async {
       markers.clear();
     });
     String url =
-        '$baseUrl?key=$_API_KEY&location=$latitude,$longitude&radius=10000&keyword=${keyword}';
+        '$baseUrl?key=$_API_KEY&location=$latitude,$longitude&radius=5000&keyword=${keyword}';
     print(url);
     final response = await http.get(url);
 

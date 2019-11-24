@@ -70,7 +70,7 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
                                   
                                 ),
                               ButtonTheme.bar(
-                                // make buttons use the appropriate styles for cards
+                                
                                 child: ButtonBar(
                                   children: <Widget>[
                                     FlatButton(
@@ -102,11 +102,7 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
   }
 }
 
-// navigateToUpdateStorePage(BuildContext context, String docID) {
-//   Navigator.push(context, MaterialPageRoute(builder: (context) {
-//     return UpdateStore(docID: docID);
-//   }));
-// }
+
 
 navigateToNewMenuPage(
   BuildContext context,String docID) {
