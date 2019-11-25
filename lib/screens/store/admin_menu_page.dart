@@ -23,7 +23,7 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Colors.pink[300],
+            backgroundColor: Colors.orange[300],
             title: Text(widget.store_name),
             actions: <Widget>[
               FlatButton(
@@ -34,7 +34,7 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
               )
             ]),
         body: Container(
-          color: Colors.pink[50],
+          color: Colors.orange[50],
           child: StreamBuilder<QuerySnapshot>(
               stream: Firestore.instance
                   .collection('menus')
@@ -57,8 +57,8 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(16),
                                 gradient: LinearGradient(colors: [
-                                  Colors.purple[100],
-                                  Colors.pink[100]
+                                  Colors.yellow[100],
+                                  Colors.orange[100]
                                 ])),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,

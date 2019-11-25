@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'LALLABUY',
       theme: ThemeData(
-        primarySwatch: Colors.pink,
+        primarySwatch: Colors.orange,
       ),
       home: MyHomePage(title: 'Homepage'),
       debugShowCheckedModeBanner: false,
@@ -36,13 +36,13 @@ class MyHomePageState extends State<MyHomePage> {
         title: Text('LALLABUY'),
       ),
       body: Container(
-            color: Colors.pink[50],
+            color: Colors.orange[50],
             child: Center(
               child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       gradient: LinearGradient(
-                          colors: [Colors.purple[100], Colors.pink[100]])),
+                          colors: [Colors.yellow[100], Colors.orange[100]])),
                   margin: EdgeInsets.all(32),
                   padding: EdgeInsets.all(24),
                   child: Column(
@@ -67,7 +67,7 @@ class MyHomePageState extends State<MyHomePage> {
               navigateToLoginPage(context);
             }),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16), color: Colors.pink[200]),
+            borderRadius: BorderRadius.circular(16), color: Colors.orange[200]),
         margin: EdgeInsets.only(top: 16),
         padding: EdgeInsets.all(12));
   }
@@ -82,7 +82,7 @@ class MyHomePageState extends State<MyHomePage> {
               navigateToSearchPage(context);
             }),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16), color: Colors.pink[200]),
+            borderRadius: BorderRadius.circular(16), color: Colors.orange[200]),
         margin: EdgeInsets.only(top: 16),
         padding: EdgeInsets.all(12));
   }

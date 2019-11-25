@@ -1,35 +1,65 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import './store_menu_page.dart';
-import '../../map.dart';
+import 'map.dart';
+import 'package:poppop/screens/store/store_menu_page.dart';
 
-class StoresPage extends StatefulWidget {
-  StoresPage({Key key, this.category}) : super(key: key);
-  final String category;
-  StoresPageState createState() => StoresPageState();
+
+class Search extends StatefulWidget {
+  Search(
+      {Key key,
+      this.storeName,
+      this.storeCate,
+      this.storeLat,
+      this.storeLng,
+      this.hereLat,
+      this.hereLng,
+      })
+      : super(key: key);
+  final String storeName;
+  final String storeCate;
+  final double storeLat;
+  final double storeLng;
+  final double hereLat;
+  final double hereLng;
+  
+
+
+  @override
+  SearchState createState() => SearchState();
 }
 
-class StoresPageState extends State<StoresPage> {
+class SearchState extends State<Search> {
   
+  // _search(Double lat,Double lng) async{
+  //   Firestore.instance.collection('store').where("location").snapshots();
+  //   if (widget.hereLat - document['location'][0] < 1 &&
+  //       widget.hereLng - document['location'][0] < 1)
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.orange[300],
-          title: Text(widget.category),
+          title: Text('Restuarants'),
+          
         ),
         body: Container(
             color: Colors.orange[50],
+            
             child: StreamBuilder<QuerySnapshot>(
               stream: Firestore.instance
                   .collection('store')
-                  .where("store_category", isEqualTo: widget.category)
+                  .where('location', isGreaterThanOrEqualTo: [widget.hereLat])
+                  // .where("location", isLessThanOrEqualTo: [widget.hereLng])
                   .snapshots(),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.hasError) return Text('Error: ${snapshot.error}');
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
+                                               print(widget.hereLat);
+                                        print(widget.hereLng);
                     return Text('Loading...');
                   default:
                     return ListView(
@@ -97,10 +127,10 @@ class StoresPageState extends State<StoresPage> {
             )
             );
   }
-}
-
+    
 navigateToMenuPage(BuildContext context, String docID,String store_name) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
     return StoreMenuPage(docID: docID,store_name: store_name);
   }));
+}
 }

@@ -5,6 +5,7 @@ import './screens/search_map.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:location/location.dart';
 import 'dart:async';
+import 'search.dart';
 
 class SearchPage extends StatefulWidget {
   SearchPage({Key key}) : super(key: key);
@@ -88,7 +89,7 @@ class SearchPageState extends State<SearchPage> {
       children: <Widget>[
         Text(title, style: TextStyle(fontSize: 18)),
         Container(
-          height: 200,
+          height: 150,
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: <Widget>[
@@ -113,7 +114,7 @@ class SearchPageState extends State<SearchPage> {
       children: <Widget>[
         Text("จัดเต็ม ซื้อ1แถม1", style: TextStyle(fontSize: 18)),
         Container(
-          height: 200,
+          height: 150,
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: <Widget>[
@@ -138,7 +139,7 @@ class SearchPageState extends State<SearchPage> {
       children: <Widget>[
         Text("ร้านดัง ต้องสั่ง!!", style: TextStyle(fontSize: 18)),
         Container(
-          height: 200,
+          height: 150,
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: <Widget>[
@@ -170,7 +171,7 @@ class SearchPageState extends State<SearchPage> {
           title: Text('LALLABUY'),
         ),
         body: Container(
-          color: Colors.pink[50],
+          color: Colors.orange[50],
           child: 
           // StreamBuilder<QuerySnapshot>(
           //     stream: Firestore.instance.collection('store').snapshots(),
@@ -225,16 +226,22 @@ class SearchPageState extends State<SearchPage> {
                                         Navigator.push(context,
                                             MaterialPageRoute(
                                                 builder: (context) {
-                                          return SearchMap(
+                                            return Search(
                                               hereLat: _startLocation.latitude,
                                               hereLng: _startLocation.longitude,
-                                              // storeName: document['store_name'],
-                                              // storeCate:
-                                              //     document['store_category'],
-                                              // storeLat: document['location'][0],
-                                              // storeLng: document['location'][1],
-                                              // docId: document.documentID
-                                              );
+                                              // hereLat: 14.024738,
+                                              // hereLng: 99.97687,
+                                            );
+                                          // return SearchMap(
+                                          //     hereLat: _startLocation.latitude,
+                                          //     hereLng: _startLocation.longitude,
+                                          //     // storeName: document['store_name'],
+                                          //     // storeCate:
+                                          //     //     document['store_category'],
+                                          //     // storeLat: document['location'][0],
+                                          //     // storeLng: document['location'][1],
+                                          //     // docId: document.documentID
+                                          //     );
                                         }));
                                       },
                                     ),

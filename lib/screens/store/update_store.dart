@@ -123,7 +123,7 @@ class UpdateStoreState extends State<UpdateStore> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor:Colors.pink[50],
+          backgroundColor:Colors.orange[50],
           title: Text('Update Store Success'),
           actions: <Widget>[
             FlatButton(
@@ -143,20 +143,20 @@ class UpdateStoreState extends State<UpdateStore> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.pink[300],
+          backgroundColor: Colors.orange[300],
           title: Text(widget.store_name),
         ),
         body: SafeArea(
             top: false,
             bottom: false,
              child: Container(
-            color: Colors.pink[50],
+            color: Colors.orange[50],
             child: Center(
               child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       gradient: LinearGradient(
-                          colors: [Colors.purple[100], Colors.pink[100]])),
+                          colors: [Colors.yellow[100], Colors.orange[100]])),
                   margin: EdgeInsets.all(32),
                   padding: EdgeInsets.all(24),
             child: Form(
@@ -212,7 +212,7 @@ class UpdateStoreState extends State<UpdateStore> {
                         RaisedButton(
                             onPressed: getImage,
                             child: Icon(Icons.add_a_photo),
-                            color: Colors.pink[200],),
+                            color: Colors.orange[200],),
                         
                       ]),
                       Row(children: <Widget>[
@@ -232,7 +232,7 @@ class UpdateStoreState extends State<UpdateStore> {
                         children: <Widget>[
                           RaisedButton(
                               child: Text('เปลี่ยนตำแหน่งที่ตั้ง'),
-                              color: Colors.pink[200],
+                              color: Colors.orange[200],
                               onPressed: () {
                                 _initPlatformState();
                               }),
@@ -252,7 +252,7 @@ class UpdateStoreState extends State<UpdateStore> {
                           padding: EdgeInsets.only(),
                           child: RaisedButton(
                             child: Text('Update',style: TextStyle(fontSize: 18, color: Colors.white)),
-                            color: Colors.pink[200],
+                            color: Colors.orange[200],
                             onPressed: _onUpdate,
                           )),
                     ],

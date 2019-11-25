@@ -59,7 +59,7 @@ class NewMenuState extends State<NewMenu> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor:Colors.pink[50],
+          backgroundColor:Colors.orange[50],
           title: Text('Input Success'),
           actions: <Widget>[
             FlatButton(
@@ -79,20 +79,20 @@ class NewMenuState extends State<NewMenu> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.pink[300],
+          backgroundColor: Colors.orange[300],
           title: Text('Input Data'),
         ),
         body: SafeArea(
           top: false,
           bottom: false,
           child: Container(
-            color: Colors.pink[50],
+            color: Colors.orange[50],
             child: Center(
               child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       gradient: LinearGradient(
-                          colors: [Colors.purple[100], Colors.pink[100]])),
+                          colors: [Colors.yellow[100], Colors.orange[100]])),
                   margin: EdgeInsets.all(32),
                   padding: EdgeInsets.all(24),
           child: Form(
@@ -120,7 +120,7 @@ class NewMenuState extends State<NewMenu> {
                   RaisedButton(
                     onPressed: getImage,
                     child: Icon(Icons.add_a_photo),
-                    color: Colors.pink[200],
+                    color: Colors.orange[200],
                   ),
                   
                 ]),
@@ -138,7 +138,7 @@ class NewMenuState extends State<NewMenu> {
                     padding: EdgeInsets.only(),
                     child: RaisedButton(
                       child: Text('Submit',style: TextStyle(fontSize: 18, color: Colors.white)),
-                                 color: Colors.pink[200],
+                                 color: Colors.orange[200],
                       onPressed: () {
                         _onSubmit(widget.docID);
                       },

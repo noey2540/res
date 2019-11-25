@@ -20,11 +20,11 @@ class StoreMenuPageState extends State<StoreMenuPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.pink[300],
+          backgroundColor: Colors.orange[300],
           title: Text(widget.store_name),
         ),
         body: Container(
-            color: Colors.pink[50],
+            color: Colors.orange[50],
             child: StreamBuilder<QuerySnapshot>(
               stream: Firestore.instance
                   .collection('menus')
@@ -47,23 +47,24 @@ class StoreMenuPageState extends State<StoreMenuPage> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(16),
                                 gradient: LinearGradient(colors: [
-                                  Colors.purple[100],
-                                  Colors.pink[100]
+                                  Colors.yellow[100],
+                                  Colors.orange[100]
                                 ])),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 ListTile(
                                   
-                                  // title: Text(document['name']),
-                                  // subtitle: Text(document['price'].toString()),
-                                  title: Image.network(document["image"][0],width: 200,
-                                height: 150),
-                                ),
-                                ListTile(
                                   title: Text(document['name']),
                                   subtitle: Text(document['price'].toString()),
+                                  trailing: Image.network(document["image"][0],width: 150,
+                                height: 100),
+
                                 ),
+                                // ListTile(
+                                //   title: Text(document['name']),
+                                //   subtitle: Text(document['price'].toString()),
+                                // ),
                               ],
                             ),
                           ),
