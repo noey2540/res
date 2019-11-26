@@ -80,7 +80,7 @@ class NewMenuState extends State<NewMenu> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.orange[300],
-          title: Text('Input Data'),
+          title: Text('Input Menu'),
         ),
         body: SafeArea(
           top: false,

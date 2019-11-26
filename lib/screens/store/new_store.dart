@@ -147,7 +147,7 @@ class NewStoreState extends State<NewStore> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.orange[300],
-          title: Text('Input Data'),
+          title: Text('Input Restaurant'),
         ),
         body: SafeArea(
           top: false,

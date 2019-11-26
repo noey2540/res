@@ -26,12 +26,12 @@ class _AdminPageState extends State<AdminPage> {
             backgroundColor: Colors.orange[300],
             title: Text('Restaurants'),
             actions: <Widget>[
-              FlatButton(
-                child: const Text('Input'),
-                onPressed: () {
-                  navigateToNewStorePage(context);
-                },
-              )
+              // FlatButton(
+              //   child: const Text('INPUT RESTAURANT'),
+              //   onPressed: () {
+              //     navigateToNewStorePage(context);
+              //   },
+              // )
             ]),
         body: Container(
           color: Colors.orange[50],
@@ -63,7 +63,11 @@ class _AdminPageState extends State<AdminPage> {
                                 title: Text(document['store_name'],
                                     style: TextStyle(
                                         fontSize: 20, color: Colors.black)),
-                                // subtitle: Image.network(document["image"][0]),
+                                subtitle: Text(document['store_category'],
+                                    style: TextStyle(
+                                        fontSize: 16, color: Colors.black)),
+                                //  subtitle: Image.network(document["image"][0],width: 150,
+                                // height: 100),
                                 onTap: () {
                                   navigateToAdminMenuPage(
                                       context, document.documentID,document['store_name']);
@@ -73,6 +77,12 @@ class _AdminPageState extends State<AdminPage> {
                                 // make buttons use the appropriate styles for cards
                                 child: ButtonBar(
                                   children: <Widget>[
+                                    FlatButton(
+                                      child: const Text('Input'),
+                                      onPressed: () {
+                  navigateToNewStorePage(context);
+                },
+                                    ),
                                     FlatButton(
                                       child: const Text('Update'),
                                       onPressed: () {

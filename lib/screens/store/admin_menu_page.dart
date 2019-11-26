@@ -26,12 +26,12 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
             backgroundColor: Colors.orange[300],
             title: Text(widget.store_name),
             actions: <Widget>[
-              FlatButton(
-                child: const Text('Input Menu'),
-                onPressed: () {
-                  navigateToNewMenuPage(context, widget.docID);
-                },
-              )
+              // FlatButton(
+              //   child: const Text('Input Menu'),
+              //   onPressed: () {
+              //     navigateToNewMenuPage(context, widget.docID);
+              //   },
+              // )
             ]),
         body: Container(
           color: Colors.orange[50],
@@ -73,6 +73,12 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
                                 
                                 child: ButtonBar(
                                   children: <Widget>[
+                                    FlatButton(
+                child: const Text('Input'),
+                onPressed: () {
+                  navigateToNewMenuPage(context, widget.docID);
+                },
+              ),
                                     FlatButton(
                                       child: const Text('Update'),
                                       onPressed: () {

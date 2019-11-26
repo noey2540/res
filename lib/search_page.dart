@@ -217,7 +217,7 @@ class SearchPageState extends State<SearchPage> {
                                 ButtonBar(
                                   children: <Widget>[
                                     FlatButton(
-                                      child: const Text('ค้นหาจากแผนที่',
+                                      child: const Text('ค้นหาจากตำแหน่งที่ตั้งปัจจุบัน',
                                           style: TextStyle(fontSize: 18)),
                                       onPressed: () {
                                         _initPlatformState();

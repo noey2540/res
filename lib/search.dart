@@ -29,11 +29,13 @@ class Search extends StatefulWidget {
 }
 
 class SearchState extends State<Search> {
-  
-  // _search(Double lat,Double lng) async{
-  //   Firestore.instance.collection('store').where("location").snapshots();
-  //   if (widget.hereLat - document['location'][0] < 1 &&
-  //       widget.hereLng - document['location'][0] < 1)
+  static double lat ;
+  static double lng ;
+  static double lat2 ;
+  static double lng2 ;
+  // _search() async{
+  //   if (widget.hereLat - 0.000010 == lat &&
+  //       widget.hereLng - 0.000010 == lng);
   // }
 
   @override
@@ -50,16 +52,18 @@ class SearchState extends State<Search> {
             child: StreamBuilder<QuerySnapshot>(
               stream: Firestore.instance
                   .collection('store')
-                  .where('location', isGreaterThanOrEqualTo: [widget.hereLat]).limit(5)
+                  .where('location', isLessThanOrEqualTo: [widget.hereLng]).limit(5)
                   // .where("location", isLessThanOrEqualTo: [widget.hereLng])
                   .snapshots(),
+                  
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.hasError) return Text('Error: ${snapshot.error}');
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
-                                               print(widget.hereLat);
-                                        print(widget.hereLng);
+                                        //        print(widget.hereLat);
+                                        // print(widget.hereLng);
+                                        print(lat);
                     return Text('Loading...');
                   default:
                     return ListView(
