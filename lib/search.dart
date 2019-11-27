@@ -52,7 +52,7 @@ class SearchState extends State<Search> {
             child: StreamBuilder<QuerySnapshot>(
               stream: Firestore.instance
                   .collection('store')
-                  .where('location', isLessThanOrEqualTo: [widget.hereLng]).limit(5)
+                  .where('location[0]', isLessThanOrEqualTo: [widget.hereLng]).limit(5)
                   // .where("location", isLessThanOrEqualTo: [widget.hereLng])
                   .snapshots(),
                   

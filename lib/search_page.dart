@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import './screens/store/stores_page.dart';
-import './screens/search_map.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:location/location.dart';
 import 'dart:async';
 import 'search.dart';
@@ -87,7 +85,7 @@ class SearchPageState extends State<SearchPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(title, style: TextStyle(fontSize: 18)),
+        Text(title, style: TextStyle(fontSize: 30,fontFamily: 'maaja')),
         Container(
           height: 150,
           child: ListView(
@@ -112,7 +110,7 @@ class SearchPageState extends State<SearchPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text("จัดเต็ม ซื้อ1แถม1", style: TextStyle(fontSize: 18)),
+        Text("จัดเต็ม ซื้อ1แถม1", style: TextStyle(fontSize: 30,fontFamily: 'maaja')),
         Container(
           height: 150,
           child: ListView(
@@ -137,7 +135,7 @@ class SearchPageState extends State<SearchPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text("ร้านดัง ต้องสั่ง!!", style: TextStyle(fontSize: 18)),
+        Text("ร้านดัง ต้องสั่ง!!", style: TextStyle(fontSize: 30,fontFamily: 'maaja')),
         Container(
           height: 150,
           child: ListView(
@@ -195,7 +193,7 @@ class SearchPageState extends State<SearchPage> {
                                 DropdownButton<String>(
                                   hint: Text('ค้นหาประเภทร้านอาหาร',
                                       style: TextStyle(
-                                          fontSize: 18, color: Colors.black)),
+                                          fontSize: 28, color: Colors.black,fontFamily: 'maaja')),
                                   onChanged: (String newValue) {
                                     print(newValue);
                                     navigateToStoresPage(context, newValue);
@@ -218,7 +216,7 @@ class SearchPageState extends State<SearchPage> {
                                   children: <Widget>[
                                     FlatButton(
                                       child: const Text('ค้นหาจากตำแหน่งที่ตั้งปัจจุบัน',
-                                          style: TextStyle(fontSize: 18)),
+                                          style: TextStyle(fontSize: 28,fontFamily: 'maaja')),
                                       onPressed: () {
                                         _initPlatformState();
                                         print(_startLocation.latitude);

@@ -75,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
         child: TextField(
             controller: ctrlUsername,
             decoration: InputDecoration.collapsed(hintText: "USERNAME"),
-            style: TextStyle(fontSize: 18)));
+            style: TextStyle(fontSize: 26,fontFamily: 'maaja')));
   }
 
   Container buildTextFieldPass() {
@@ -88,16 +88,16 @@ class _LoginPageState extends State<LoginPage> {
             controller: ctrlPassword,
             obscureText: true,
             decoration: InputDecoration.collapsed(hintText: "PASSWORD"),
-            style: TextStyle(fontSize: 18)));
+            style: TextStyle(fontSize: 26,fontFamily: 'maaja')));
   }
 
   Container buildButtonSignIn() {
     return Container(
-        constraints: BoxConstraints.expand(height: 50),
+        constraints: BoxConstraints.expand(height: 70),
         child: FlatButton(
             child: Text("Sign in",
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18, color: Colors.white)),
+                style: TextStyle(fontSize: 30, color: Colors.white,fontFamily: 'maaja')),
             onPressed: () {
               _onLogin() ;
             }),

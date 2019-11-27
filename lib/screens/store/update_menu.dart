@@ -152,7 +152,7 @@ class UpdateMenuState extends State<UpdateMenu> {
                           Container(
                               padding: EdgeInsets.only(),
                               child: RaisedButton(
-                                child: Text('Update',style: TextStyle(fontSize: 18, color: Colors.white)),
+                                child: Text('Update',style: TextStyle(fontSize: 18, color: Colors.white,fontFamily: 'maaja')),
                                  color: Colors.orange[200],
                                 onPressed: _onUpdate,
                               )),

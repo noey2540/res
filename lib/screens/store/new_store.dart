@@ -239,7 +239,7 @@ class NewStoreState extends State<NewStore> {
                 Container(
                     padding: EdgeInsets.only(),
                     child: RaisedButton(
-                      child: Text('Submit',style: TextStyle(fontSize: 18, color: Colors.white)),
+                      child: Text('Submit',style: TextStyle(fontSize: 18, color: Colors.white,fontFamily: 'maaja')),
                                  color: Colors.orange[200],
                       onPressed: _onSubmit,
                     )),

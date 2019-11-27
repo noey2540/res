@@ -51,7 +51,7 @@ class StoresPageState extends State<StoresPage> {
                                   
                                   title: Text(document['store_name'],
                                       style: TextStyle(
-                                          fontSize: 20, color: Colors.black)),
+                                          fontSize: 20, color: Colors.black,fontFamily: 'maaja')),
                                   subtitle: Image.network(document["image"][0],width: 300,
                                 height: 200,),
                                   

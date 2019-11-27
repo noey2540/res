@@ -58,11 +58,11 @@ class MyHomePageState extends State<MyHomePage> {
   }
   Container buildButtonAdmin() {
     return Container(
-        constraints: BoxConstraints.expand(height: 50),
+        constraints: BoxConstraints.expand(height: 70),
         child: FlatButton(
             child: Text("ADMIN",
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18, color: Colors.white)),
+                style: TextStyle(fontSize: 30, color: Colors.white,fontFamily: 'maaja')),
             onPressed: () {
               navigateToLoginPage(context);
             }),
@@ -73,11 +73,11 @@ class MyHomePageState extends State<MyHomePage> {
   }
   Container buildButtonSearch() {
     return Container(
-        constraints: BoxConstraints.expand(height: 50),
+        constraints: BoxConstraints.expand(height: 70),
         child: FlatButton(
             child: Text("ค้นหาร้านอาหาร",
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18, color: Colors.white)),
+                style: TextStyle(fontSize: 30, color: Colors.white,fontFamily: 'maaja')),
             onPressed: () {
               navigateToSearchPage(context);
             }),
