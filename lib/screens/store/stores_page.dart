@@ -51,7 +51,7 @@ class StoresPageState extends State<StoresPage> {
                                   
                                   title: Text(document['store_name'],
                                       style: TextStyle(
-                                          fontSize: 20, color: Colors.black,fontFamily: 'maaja')),
+                                          fontSize: 30, color: Colors.black,fontFamily: 'maaja')),
                                   subtitle: Image.network(document["image"][0],width: 300,
                                 height: 200,),
                                   
@@ -76,7 +76,9 @@ class StoresPageState extends State<StoresPage> {
                                   },
                                       ),
                                       FlatButton(
-                                        child: const Text('MENU'),
+                                        child: const Text('MENU',
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja')),
                                         onPressed: () {
                                           navigateToMenuPage(
                                               context, document.documentID, document['store_name']);

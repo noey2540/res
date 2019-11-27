@@ -55,8 +55,12 @@ class StoreMenuPageState extends State<StoreMenuPage> {
                               children: <Widget>[
                                 ListTile(
                                   
-                                  title: Text(document['name']),
-                                  subtitle: Text(document['price'].toString()),
+                                  title: Text(document['name'],
+                                      style: TextStyle(
+                                          fontSize: 28, color: Colors.black,fontFamily: 'maaja')),
+                                  subtitle: Text(document['price'].toString(),
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja')),
                                   trailing: Image.network(document["image"][0],width: 150,
                                 height: 100),
 

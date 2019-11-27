@@ -27,7 +27,9 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
             title: Text(widget.store_name),
             actions: <Widget>[
               FlatButton(
-                child: const Text('Input Menu'),
+                child: const Text('Input Menu',
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja')),
                 onPressed: () {
                   navigateToNewMenuPage(context, widget.docID);
                 },
@@ -64,7 +66,9 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
                                 ListTile(
-                                  title: Text(document['name']),
+                                  title: Text(document['name'],
+                                    style: TextStyle(
+                                        fontSize: 28, color: Colors.black,fontFamily: 'maaja')),
                                   subtitle: Text(document['price'].toString()),
                                   leading: Image.network(document["image"][0]),
                                   
@@ -75,14 +79,18 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
                                   children: <Widget>[
                                    
                                     FlatButton(
-                                      child: const Text('Update'),
+                                      child: const Text('Update',
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja')),
                                       onPressed: () {
                                         navigateToUpdateMenuPage(
                                             context, document.documentID,document['name']);
                                       },
                                     ),
                                     FlatButton(
-                                        child: const Text('Delete'),
+                                        child: const Text('Delete',
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja')),
                                         onPressed: () {
                                           _onDelete(document.documentID);
                                         }),

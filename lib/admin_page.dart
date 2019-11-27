@@ -27,7 +27,9 @@ class _AdminPageState extends State<AdminPage> {
             title: Text('Restaurants'),
             actions: <Widget>[
               FlatButton(
-                child: const Text('Input Restaurant'),
+                child: const Text('Input Restaurant',
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja')),
                 onPressed: () {
                   navigateToNewStorePage(context);
                 },
@@ -62,10 +64,10 @@ class _AdminPageState extends State<AdminPage> {
                               ListTile(
                                 title: Text(document['store_name'],
                                     style: TextStyle(
-                                        fontSize: 20, color: Colors.black,fontFamily: 'maaja')),
+                                        fontSize: 28, color: Colors.black,fontFamily: 'maaja')),
                                 subtitle: Text(document['store_category'],
                                     style: TextStyle(
-                                        fontSize: 16, color: Colors.black,fontFamily: 'maaja')),
+                                        fontSize: 26, color: Colors.black,fontFamily: 'maaja')),
                                 //  subtitle: Image.network(document["image"][0],width: 150,
                                 // height: 100),
                                 onTap: () {
@@ -79,14 +81,18 @@ class _AdminPageState extends State<AdminPage> {
                                   children: <Widget>[
                                     
                                     FlatButton(
-                                      child: const Text('Update'),
+                                      child: const Text('Update',
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja')),
                                       onPressed: () {
                                         navigateToUpdateStorePage(
                                             context, document.documentID,document['store_name']);
                                       },
                                     ),
                                     FlatButton(
-                                        child: const Text('Delete'),
+                                        child: const Text('Delete',
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja')),
                                         onPressed: () {
                                           _onDelete(document.documentID);
                                         }),

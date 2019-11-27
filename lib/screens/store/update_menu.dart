@@ -59,10 +59,14 @@ class UpdateMenuState extends State<UpdateMenu> {
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor:Colors.orange[50],
-          title: Text('Update Menu Success'),
+          title: Text('Update Menu Success',
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja')),
           actions: <Widget>[
             FlatButton(
-              child: Text('Ok'),
+              child: Text('Ok',
+                                      style: TextStyle(
+                                          fontSize: 26,fontFamily: 'maaja')),
               onPressed: () {
                 Navigator.of(context).pop();
                 navigateToAdminPage(context);
@@ -116,6 +120,8 @@ class UpdateMenuState extends State<UpdateMenu> {
                               hintText: 'กรุณากรอกชื่ออาหาร',
                               labelText: 'ชื่ออาหาร',
                             ),
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja'),
                             onSaved: (val) => newMenu.name = val,
                           ),
                           TextFormField(
@@ -125,6 +131,8 @@ class UpdateMenuState extends State<UpdateMenu> {
                               hintText: 'กรุณากรอกราคา',
                               labelText: 'ราคา',
                             ),
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja'),
                             keyboardType: TextInputType.number,
                             onSaved: (val) => newMenu.price = double.parse(val),
                           ),
@@ -152,7 +160,7 @@ class UpdateMenuState extends State<UpdateMenu> {
                           Container(
                               padding: EdgeInsets.only(),
                               child: RaisedButton(
-                                child: Text('Update',style: TextStyle(fontSize: 18, color: Colors.white,fontFamily: 'maaja')),
+                                child: Text('Update',style: TextStyle(fontSize: 28, color: Colors.white,fontFamily: 'maaja')),
                                  color: Colors.orange[200],
                                 onPressed: _onUpdate,
                               )),

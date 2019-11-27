@@ -60,10 +60,14 @@ class NewMenuState extends State<NewMenu> {
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor:Colors.orange[50],
-          title: Text('Input Success'),
+          title: Text('Input Success',
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja')),
           actions: <Widget>[
             FlatButton(
-              child: Text('Ok'),
+              child: Text('Ok',
+                                      style: TextStyle(
+                                          fontSize: 26,fontFamily: 'maaja')),
               onPressed: () {
                 Navigator.of(context).pop();
                 navigateToAdminPage(context);
@@ -105,6 +109,8 @@ class NewMenuState extends State<NewMenu> {
                     hintText: 'กรุณากรอกชื่ออาหาร',
                     labelText: 'ชื่ออาหาร',
                   ),
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja'),
                   onSaved: (val) => newMenu.name = val,
                 ),
                 TextFormField(
@@ -113,6 +119,8 @@ class NewMenuState extends State<NewMenu> {
                     hintText: 'กรุณากรอกราคา',
                     labelText: 'ราคา',
                   ),
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja'),
                   keyboardType: TextInputType.number,
                   onSaved: (val) => newMenu.price = double.parse(val),
                 ),
@@ -126,7 +134,9 @@ class NewMenuState extends State<NewMenu> {
                 ]),
                 Row(children: <Widget>[
                    _image == null
-                        ? Text('No image selected.')
+                        ? Text('No image selected.',
+                                      style: TextStyle(
+                                          fontSize: 26,fontFamily: 'maaja'))
                         : Image.file(
                             _image,
                             width: 250,
@@ -137,7 +147,7 @@ class NewMenuState extends State<NewMenu> {
                 Container(
                     padding: EdgeInsets.only(),
                     child: RaisedButton(
-                      child: Text('Submit',style: TextStyle(fontSize: 18, color: Colors.white,fontFamily: 'maaja')),
+                      child: Text('Submit',style: TextStyle(fontSize: 28, color: Colors.white,fontFamily: 'maaja')),
                                  color: Colors.orange[200],
                       onPressed: () {
                         _onSubmit(widget.docID);

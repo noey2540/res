@@ -208,7 +208,9 @@ class SearchPageState extends State<SearchPage> {
                                       (String value) {
                                     return DropdownMenuItem<String>(
                                       value: value,
-                                      child: Text(value),
+                                      child: Text(value,
+                                      style: TextStyle(
+                                          fontSize: 28, color: Colors.black,fontFamily: 'maaja')),
                                     );
                                   }).toList(),
                                 ),

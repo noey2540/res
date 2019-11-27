@@ -127,10 +127,14 @@ class NewStoreState extends State<NewStore> {
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor:Colors.orange[50],
-          title: Text('Input Success'),
+          title: Text('Input Success',
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja')),
           actions: <Widget>[
             FlatButton(
-              child: Text('Ok'),
+              child: Text('Ok',
+                                      style: TextStyle(
+                                          fontSize: 26,fontFamily: 'maaja')),
               onPressed: () {
                 Navigator.of(context).pop();
                 navigateToAdminPage(context);
@@ -171,12 +175,18 @@ class NewStoreState extends State<NewStore> {
                     icon: Icon(Icons.account_balance),
                     hintText: 'กรุณากรอกชื่อร้าน',
                     labelText: 'ชื่อร้าน',
+                    
                   ),
+                  
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja'),
                   onSaved: (val) => newStore.store_name = val,
                 ),
                 Row(children: <Widget>[
                   Icon(Icons.beenhere),
-                  Text('ประเภทร้านอาหาร  '),
+                  Text('ประเภทร้านอาหาร  ',
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja')),
                   DropdownButton<String>(
                     
                     value: dropdownValue,
@@ -195,7 +205,9 @@ class NewStoreState extends State<NewStore> {
                     ].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
-                        child: Text(value),
+                        child: Text(value,
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja')),
                       );
                     }).toList(),
                   ),
@@ -210,7 +222,9 @@ class NewStoreState extends State<NewStore> {
                 Row(children: <Widget>[
                   
                      _image == null
-                        ? Text('No image selected.')
+                        ? Text('No image selected.',
+                                      style: TextStyle(
+                                          fontSize: 26,fontFamily: 'maaja'))
                         : Image.file(
                             _image,
                             width: 250,
@@ -220,17 +234,23 @@ class NewStoreState extends State<NewStore> {
                 ]),
                 Row(children: <Widget>[
                   RaisedButton(
-                      child: Text('เรียกตำแหน่งที่ตั้ง'),
+                      child: Text('เรียกตำแหน่งที่ตั้ง',
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja')),
                       color: Colors.orange[200],
                       onPressed: () {
                         _initPlatformState();
                       }),
                 ]),
-                Text('latitude:'),
+                Text('latitude:',
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja')),
                 Text(_startLocation == null
                     ? '-'
                     : _startLocation.latitude.toString()),
-                Text('longitude:'),
+                Text('longitude:',
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja')),
                 Text(
                   _startLocation == null
                       ? '-'
@@ -239,7 +259,7 @@ class NewStoreState extends State<NewStore> {
                 Container(
                     padding: EdgeInsets.only(),
                     child: RaisedButton(
-                      child: Text('Submit',style: TextStyle(fontSize: 18, color: Colors.white,fontFamily: 'maaja')),
+                      child: Text('Submit',style: TextStyle(fontSize: 28, color: Colors.white,fontFamily: 'maaja')),
                                  color: Colors.orange[200],
                       onPressed: _onSubmit,
                     )),

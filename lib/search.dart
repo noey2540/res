@@ -52,7 +52,7 @@ class SearchState extends State<Search> {
             child: StreamBuilder<QuerySnapshot>(
               stream: Firestore.instance
                   .collection('store')
-                  .where('location[0]', isLessThanOrEqualTo: [widget.hereLng]).limit(5)
+                  .where('location', isLessThanOrEqualTo: [widget.hereLng]).limit(5)
                   // .where("location", isLessThanOrEqualTo: [widget.hereLng])
                   .snapshots(),
                   
@@ -85,7 +85,7 @@ class SearchState extends State<Search> {
                                   
                                   title: Text(document['store_name'],
                                       style: TextStyle(
-                                          fontSize: 20, color: Colors.black)),
+                                          fontSize: 28, color: Colors.black,fontFamily: 'maaja')),
                                   subtitle: Image.network(document["image"][0],width: 300,
                                 height: 200,),
                                   
@@ -110,7 +110,9 @@ class SearchState extends State<Search> {
                                   },
                                       ),
                                       FlatButton(
-                                        child: const Text('MENU'),
+                                        child: const Text('MENU',
+                                      style: TextStyle(
+                                          fontSize: 28,fontFamily: 'maaja')),
                                         onPressed: () {
                                           navigateToMenuPage(
                                               context, document.documentID, document['store_name']);
