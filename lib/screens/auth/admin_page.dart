@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import './screens/store/update_store.dart';
-import './screens/store/admin_menu_page.dart';
-import './screens/store/new_store.dart';
+import '../navigate.dart';
 
 class AdminPage extends StatefulWidget {
-  AdminPage({
-    Key key,
-  }) : super(key: key);
-
+  AdminPage({Key key, this.docID, this.storeName}) : super(key: key);
+  final String docID;
+  final String storeName;
   _AdminPageState createState() => _AdminPageState();
 }
 
@@ -22,18 +19,19 @@ class _AdminPageState extends State<AdminPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Colors.pink[300],
+            backgroundColor: Colors.orange[300],
             title: Text('Restaurants'),
             actions: <Widget>[
               FlatButton(
-                child: const Text('Input'),
+                child: const Text('Input Restaurant',
+                    style: TextStyle(fontSize: 28, fontFamily: 'maaja')),
                 onPressed: () {
                   navigateToNewStorePage(context);
                 },
               )
             ]),
         body: Container(
-          color: Colors.pink[50],
+          color: Colors.orange[50],
           child: StreamBuilder<QuerySnapshot>(
             stream: Firestore.instance.collection('store').snapshots(),
             builder:
@@ -52,8 +50,8 @@ class _AdminPageState extends State<AdminPage> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16),
                               gradient: LinearGradient(colors: [
-                                Colors.purple[100],
-                                Colors.pink[100]
+                                Colors.yellow[100],
+                                Colors.orange[100]
                               ])),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -61,8 +59,14 @@ class _AdminPageState extends State<AdminPage> {
                               ListTile(
                                 title: Text(document['store_name'],
                                     style: TextStyle(
-                                        fontSize: 20, color: Colors.black)),
-                                // subtitle: Image.network(document["image"][0]),
+                                        fontSize: 28,
+                                        color: Colors.black,
+                                        fontFamily: 'maaja')),
+                                subtitle: Text(document['store_category'],
+                                    style: TextStyle(
+                                        fontSize: 26,
+                                        color: Colors.black,
+                                        fontFamily: 'maaja')),
                                 onTap: () {
                                   navigateToAdminMenuPage(
                                       context,
@@ -71,18 +75,25 @@ class _AdminPageState extends State<AdminPage> {
                                 },
                               ),
                               ButtonTheme.bar(
-                                // make buttons use the appropriate styles for cards
                                 child: ButtonBar(
                                   children: <Widget>[
                                     FlatButton(
-                                      child: const Text('Update'),
+                                      child: const Text('Update',
+                                          style: TextStyle(
+                                              fontSize: 28,
+                                              fontFamily: 'maaja')),
                                       onPressed: () {
                                         navigateToUpdateStorePage(
-                                            context, document.documentID);
+                                            context,
+                                            document.documentID,
+                                            document['store_name']);
                                       },
                                     ),
                                     FlatButton(
-                                        child: const Text('Delete'),
+                                        child: const Text('Delete',
+                                            style: TextStyle(
+                                                fontSize: 28,
+                                                fontFamily: 'maaja')),
                                         onPressed: () {
                                           _onDelete(document.documentID);
                                         }),
@@ -100,24 +111,4 @@ class _AdminPageState extends State<AdminPage> {
           ),
         ));
   }
-}
-
-navigateToUpdateStorePage(BuildContext context, String docID) {
-  Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return UpdateStore(docID: docID);
-  }));
-}
-
-navigateToNewStorePage(
-  BuildContext context,
-) {
-  Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return NewStore();
-  }));
-}
-
-navigateToAdminMenuPage(BuildContext context, String docID, String store_name) {
-  Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return AdminMenuPage(docID: docID, store_name: store_name);
-  }));
 }

@@ -1,8 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import './admin_page.dart';
+import '../navigate.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({
@@ -27,8 +24,8 @@ class _LoginPageState extends State<LoginPage> {
       print(username);
       print(password);
 
-      if (username.toLowerCase() == 'admin' &&
-          password.toLowerCase() == 'admin') {
+      if (username.toLowerCase() == 'sirilak' &&
+          password.toLowerCase() == 'admin2324') {
         Navigator.of(context).pop();
         navigateToAdminPage(context);
       } else {
@@ -41,17 +38,17 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.pink[300],
+          backgroundColor: Colors.orange[300],
           title: Text('เข้าสู่ระบบ'),
         ),
         body: Container(
-            color: Colors.pink[50],
+            color: Colors.orange[50],
             child: Center(
               child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       gradient: LinearGradient(
-                          colors: [Colors.purple[100], Colors.pink[100]])),
+                          colors: [Colors.yellow[100], Colors.orange[100]])),
                   margin: EdgeInsets.all(32),
                   padding: EdgeInsets.all(24),
                   child: Form(
@@ -72,11 +69,11 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
-            color: Colors.purple[50], borderRadius: BorderRadius.circular(16)),
+            color: Colors.yellow[50], borderRadius: BorderRadius.circular(16)),
         child: TextField(
             controller: ctrlUsername,
             decoration: InputDecoration.collapsed(hintText: "USERNAME"),
-            style: TextStyle(fontSize: 18)));
+            style: TextStyle(fontSize: 26, fontFamily: 'maaja')));
   }
 
   Container buildTextFieldPass() {
@@ -84,33 +81,28 @@ class _LoginPageState extends State<LoginPage> {
         padding: EdgeInsets.all(12),
         margin: EdgeInsets.only(top: 12),
         decoration: BoxDecoration(
-            color: Colors.purple[50], borderRadius: BorderRadius.circular(16)),
+            color: Colors.yellow[50], borderRadius: BorderRadius.circular(16)),
         child: TextField(
             controller: ctrlPassword,
             obscureText: true,
             decoration: InputDecoration.collapsed(hintText: "PASSWORD"),
-            style: TextStyle(fontSize: 18)));
+            style: TextStyle(fontSize: 26, fontFamily: 'maaja')));
   }
 
   Container buildButtonSignIn() {
     return Container(
-        constraints: BoxConstraints.expand(height: 50),
+        constraints: BoxConstraints.expand(height: 70),
         child: FlatButton(
             child: Text("Sign in",
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18, color: Colors.white)),
+                style: TextStyle(
+                    fontSize: 30, color: Colors.white, fontFamily: 'maaja')),
             onPressed: () {
               _onLogin();
             }),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16), color: Colors.pink[200]),
+            borderRadius: BorderRadius.circular(16), color: Colors.orange[200]),
         margin: EdgeInsets.only(top: 16),
         padding: EdgeInsets.all(12));
   }
-}
-
-navigateToAdminPage(BuildContext context) {
-  Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return AdminPage();
-  }));
 }

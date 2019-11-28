@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import './new_menu.dart';
-import './update_menu.dart';
+import '../navigate.dart';
 
-class AdminMenuPage extends StatefulWidget {
-  AdminMenuPage({Key key, this.docID, this.store_name}) : super(key: key);
+class MenuPage extends StatefulWidget {
+  MenuPage({Key key, this.docID, this.storeName}) : super(key: key);
 
   final String docID;
-  final String store_name;
-  _AdminMenuPageState createState() => _AdminMenuPageState();
+  final String storeName;
+  _MenuPageState createState() => _MenuPageState();
 }
 
-class _AdminMenuPageState extends State<AdminMenuPage> {
+class _MenuPageState extends State<MenuPage> {
   Future _onDelete(String docID) async {
     Firestore.instance.collection('menus').document(docID).delete();
     return null;
@@ -21,18 +20,19 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: Colors.pink[300],
-            title: Text(widget.store_name),
+            backgroundColor: Colors.orange[300],
+            title: Text(widget.storeName),
             actions: <Widget>[
               FlatButton(
-                child: const Text('Input Menu'),
+                child: const Text('Input Menu',
+                    style: TextStyle(fontSize: 28, fontFamily: 'maaja')),
                 onPressed: () {
                   navigateToNewMenuPage(context, widget.docID);
                 },
               )
             ]),
         body: Container(
-          color: Colors.pink[50],
+          color: Colors.orange[50],
           child: StreamBuilder<QuerySnapshot>(
             stream: Firestore.instance
                 .collection('menus')
@@ -55,23 +55,29 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16),
                               gradient: LinearGradient(colors: [
-                                Colors.purple[100],
-                                Colors.pink[100]
+                                Colors.yellow[100],
+                                Colors.orange[100]
                               ])),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               ListTile(
-                                title: Text(document['name']),
+                                title: Text(document['name'],
+                                    style: TextStyle(
+                                        fontSize: 28,
+                                        color: Colors.black,
+                                        fontFamily: 'maaja')),
                                 subtitle: Text(document['price'].toString()),
                                 leading: Image.network(document["image"][0]),
                               ),
                               ButtonTheme.bar(
-                                // make buttons use the appropriate styles for cards
                                 child: ButtonBar(
                                   children: <Widget>[
                                     FlatButton(
-                                      child: const Text('Update'),
+                                      child: const Text('Update',
+                                          style: TextStyle(
+                                              fontSize: 28,
+                                              fontFamily: 'maaja')),
                                       onPressed: () {
                                         navigateToUpdateMenuPage(
                                             context,
@@ -80,7 +86,10 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
                                       },
                                     ),
                                     FlatButton(
-                                        child: const Text('Delete'),
+                                        child: const Text('Delete',
+                                            style: TextStyle(
+                                                fontSize: 28,
+                                                fontFamily: 'maaja')),
                                         onPressed: () {
                                           _onDelete(document.documentID);
                                         }),
@@ -99,22 +108,4 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
           ),
         ));
   }
-}
-
-// navigateToUpdateStorePage(BuildContext context, String docID) {
-//   Navigator.push(context, MaterialPageRoute(builder: (context) {
-//     return UpdateStore(docID: docID);
-//   }));
-// }
-
-navigateToNewMenuPage(BuildContext context, String docID) {
-  Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return NewMenu(docID: docID);
-  }));
-}
-
-navigateToUpdateMenuPage(BuildContext context, String docID, String name) {
-  Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return UpdateMenu(docID: docID, name: name);
-  }));
 }

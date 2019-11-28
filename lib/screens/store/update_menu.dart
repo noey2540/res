@@ -7,7 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../models/menu.dart';
 import '../../services/image_service.dart';
 import 'package:flutter/services.dart';
-import './admin_menu_page.dart';
+import '../navigate.dart';
 
 class UpdateMenu extends StatefulWidget {
   UpdateMenu({Key key, this.docID, this.name}) : super(key: key);
@@ -32,7 +32,7 @@ class UpdateMenuState extends State<UpdateMenu> {
 
   void _onUpdate() async {
     final FormState form = _formKey.currentState;
-    form.save(); //This invokes each onSaved event
+    form.save();
 
     print('Form save called, newContact is now up to date...');
     print('Name: ${newMenu.name}');
@@ -54,17 +54,19 @@ class UpdateMenuState extends State<UpdateMenu> {
   Future<void> _alertupdate() async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Colors.pink[50],
-          title: Text('Update Success'),
+          backgroundColor: Colors.orange[50],
+          title: Text('Update Menu Success',
+              style: TextStyle(fontSize: 28, fontFamily: 'maaja')),
           actions: <Widget>[
             FlatButton(
-              child: Text('Ok'),
+              child: Text('Ok',
+                  style: TextStyle(fontSize: 26, fontFamily: 'maaja')),
               onPressed: () {
                 Navigator.of(context).pop();
-                navigateToAdminMenuPage(context);
+                navigateToAdminPage(context);
               },
             ),
           ],
@@ -77,7 +79,7 @@ class UpdateMenuState extends State<UpdateMenu> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.pink[300],
+          backgroundColor: Colors.orange[300],
           title: Text(widget.name),
         ),
         body: StreamBuilder(
@@ -94,20 +96,19 @@ class UpdateMenuState extends State<UpdateMenu> {
                   top: false,
                   bottom: false,
                   child: Container(
-                      color: Colors.pink[50],
+                      color: Colors.orange[50],
                       child: Center(
                           child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(16),
                                   gradient: LinearGradient(colors: [
-                                    Colors.purple[100],
-                                    Colors.pink[100]
+                                    Colors.yellow[100],
+                                    Colors.orange[100]
                                   ])),
                               margin: EdgeInsets.all(32),
                               padding: EdgeInsets.all(24),
                               child: Form(
                                   key: _formKey,
-                                  // color: Colors.green[50],
                                   child: ListView(
                                     children: <Widget>[
                                       TextFormField(
@@ -117,6 +118,8 @@ class UpdateMenuState extends State<UpdateMenu> {
                                           hintText: 'กรุณากรอกชื่ออาหาร',
                                           labelText: 'ชื่ออาหาร',
                                         ),
+                                        style: TextStyle(
+                                            fontSize: 28, fontFamily: 'maaja'),
                                         onSaved: (val) => newMenu.name = val,
                                       ),
                                       TextFormField(
@@ -127,6 +130,8 @@ class UpdateMenuState extends State<UpdateMenu> {
                                           hintText: 'กรุณากรอกราคา',
                                           labelText: 'ราคา',
                                         ),
+                                        style: TextStyle(
+                                            fontSize: 28, fontFamily: 'maaja'),
                                         keyboardType: TextInputType.number,
                                         onSaved: (val) =>
                                             newMenu.price = double.parse(val),
@@ -135,7 +140,7 @@ class UpdateMenuState extends State<UpdateMenu> {
                                         RaisedButton(
                                           onPressed: getImage,
                                           child: Icon(Icons.add_a_photo),
-                                          color: Colors.pink[200],
+                                          color: Colors.orange[200],
                                         ),
                                       ]),
                                       Row(children: <Widget>[
@@ -157,19 +162,14 @@ class UpdateMenuState extends State<UpdateMenu> {
                                           child: RaisedButton(
                                             child: Text('Update',
                                                 style: TextStyle(
-                                                    fontSize: 18,
-                                                    color: Colors.white)),
-                                            color: Colors.pink[200],
+                                                    fontSize: 28,
+                                                    color: Colors.white,
+                                                    fontFamily: 'maaja')),
+                                            color: Colors.orange[200],
                                             onPressed: _onUpdate,
                                           )),
                                     ],
                                   ))))));
             }));
   }
-}
-
-navigateToAdminMenuPage(BuildContext context) {
-  Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return AdminMenuPage();
-  }));
 }

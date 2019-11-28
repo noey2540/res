@@ -7,16 +7,17 @@ import 'package:location/location.dart';
 import '../../models/store.dart';
 import '../../services/image_service.dart';
 import 'package:flutter/services.dart';
-import '../../admin_page.dart';
+import '../navigate.dart';
 
 class UpdateStore extends StatefulWidget {
-  UpdateStore({Key key, this.docID}) : super(key: key);
+  UpdateStore({Key key, this.docID, this.storeName}) : super(key: key);
   final String docID;
+  final String storeName;
   UpdateStoreState createState() => UpdateStoreState();
 }
 
 class UpdateStoreState extends State<UpdateStore> {
-  String dropdownValue = '';
+  String dropdownValue = 'ปิ้งย่าง';
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   File _image;
 
@@ -97,8 +98,8 @@ class UpdateStoreState extends State<UpdateStore> {
     form.save();
 
     print('Form save called, newContact is now up to date...');
-    print('Name: ${newStore.store_name}');
-    print('Name: ${newStore.store_category}');
+    print('Name: ${newStore.storeName}');
+    print('Name: ${newStore.storeCategory}');
     print(_image);
     String imgUrl = await onImageUploading(_image);
     print(imgUrl);
@@ -107,8 +108,7 @@ class UpdateStoreState extends State<UpdateStore> {
 
     if (imgUrl.isNotEmpty) {
       Firestore.instance.collection('store').document(widget.docID).updateData({
-        'store_name': newStore.store_name,
-        'store_category': newStore.store_category,
+        'store_name': newStore.storeName,
         'image': [imgUrl],
         'location': [_startLocation.latitude, _startLocation.longitude]
       });
@@ -122,11 +122,13 @@ class UpdateStoreState extends State<UpdateStore> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Colors.pink[50],
-          title: Text('Update Success'),
+          backgroundColor: Colors.orange[50],
+          title: Text('Update Store Success',
+              style: TextStyle(fontSize: 28, fontFamily: 'maaja')),
           actions: <Widget>[
             FlatButton(
-              child: Text('Ok'),
+              child: Text('Ok',
+                  style: TextStyle(fontSize: 26, fontFamily: 'maaja')),
               onPressed: () {
                 Navigator.of(context).pop();
                 navigateToAdminPage(context);
@@ -142,21 +144,21 @@ class UpdateStoreState extends State<UpdateStore> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.pink[300],
-          title: Text('UpdateStore'),
+          backgroundColor: Colors.orange[300],
+          title: Text(widget.storeName),
         ),
         body: SafeArea(
             top: false,
             bottom: false,
             child: Container(
-                color: Colors.pink[50],
+                color: Colors.orange[50],
                 child: Center(
                     child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(16),
                             gradient: LinearGradient(colors: [
-                              Colors.purple[100],
-                              Colors.pink[100]
+                              Colors.yellow[100],
+                              Colors.orange[100]
                             ])),
                         margin: EdgeInsets.all(32),
                         padding: EdgeInsets.all(24),
@@ -182,18 +184,22 @@ class UpdateStoreState extends State<UpdateStore> {
                                       hintText: 'กรุณากรอกชื่อร้าน',
                                       labelText: 'ชื่อร้าน',
                                     ),
-                                    onSaved: (val) => newStore.store_name = val,
+                                    style: TextStyle(
+                                        fontSize: 28, fontFamily: 'maaja'),
+                                    onSaved: (val) => newStore.storeName = val,
                                   ),
                                   Row(children: <Widget>[
                                     Icon(Icons.playlist_add_check),
-                                    Text('    ประเภทร้านอาหาร'),
+                                    Text('    ประเภทร้านอาหาร',
+                                        style: TextStyle(
+                                            fontSize: 28, fontFamily: 'maaja')),
                                     DropdownButton<String>(
                                       value: document['store_category'],
                                       onChanged: (String newValue) {
                                         setState(() {
                                           dropdownValue = newValue;
                                         });
-                                        newStore.store_category = newValue;
+                                        newStore.storeCategory = newValue;
                                       },
                                       items: <String>[
                                         'ปิ้งย่าง',
@@ -205,7 +211,10 @@ class UpdateStoreState extends State<UpdateStore> {
                                           (String value) {
                                         return DropdownMenuItem<String>(
                                           value: value,
-                                          child: Text(value),
+                                          child: Text(value,
+                                              style: TextStyle(
+                                                  fontSize: 28,
+                                                  fontFamily: 'maaja')),
                                         );
                                       }).toList(),
                                     ),
@@ -214,7 +223,7 @@ class UpdateStoreState extends State<UpdateStore> {
                                     RaisedButton(
                                       onPressed: getImage,
                                       child: Icon(Icons.add_a_photo),
-                                      color: Colors.pink[200],
+                                      color: Colors.orange[200],
                                     ),
                                   ]),
                                   Row(children: <Widget>[
@@ -233,18 +242,25 @@ class UpdateStoreState extends State<UpdateStore> {
                                   Row(
                                     children: <Widget>[
                                       RaisedButton(
-                                          child: Text('เปลี่ยนตำแหน่งที่ตั้ง'),
-                                          color: Colors.pink[200],
+                                          child: Text('เปลี่ยนตำแหน่งที่ตั้ง',
+                                              style: TextStyle(
+                                                  fontSize: 28,
+                                                  fontFamily: 'maaja')),
+                                          color: Colors.orange[200],
                                           onPressed: () {
                                             _initPlatformState();
                                           }),
                                     ],
                                   ),
-                                  Text('latitude:'),
+                                  Text('latitude:',
+                                      style: TextStyle(
+                                          fontSize: 28, fontFamily: 'maaja')),
                                   Text(_startLocation == null
                                       ? document["location"][0].toString()
                                       : _startLocation.latitude.toString()),
-                                  Text('longitude:'),
+                                  Text('longitude:',
+                                      style: TextStyle(
+                                          fontSize: 28, fontFamily: 'maaja')),
                                   Text(
                                     _startLocation == null
                                         ? document["location"][1].toString()
@@ -255,9 +271,10 @@ class UpdateStoreState extends State<UpdateStore> {
                                       child: RaisedButton(
                                         child: Text('Update',
                                             style: TextStyle(
-                                                fontSize: 18,
-                                                color: Colors.white)),
-                                        color: Colors.pink[200],
+                                                fontSize: 28,
+                                                color: Colors.white,
+                                                fontFamily: 'maaja')),
+                                        color: Colors.orange[200],
                                         onPressed: _onUpdate,
                                       )),
                                 ],
@@ -266,10 +283,4 @@ class UpdateStoreState extends State<UpdateStore> {
                           ),
                         ))))));
   }
-}
-
-navigateToAdminPage(BuildContext context) {
-  Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return AdminPage();
-  }));
 }

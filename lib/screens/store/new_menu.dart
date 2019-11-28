@@ -3,11 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
-import 'package:location/location.dart';
 import '../../models/menu.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../services/image_service.dart';
-import '../../admin_page.dart';
+import '../navigate.dart';
 
 class NewMenu extends StatefulWidget {
   NewMenu({Key key, this.docID}) : super(key: key);
@@ -59,11 +58,13 @@ class NewMenuState extends State<NewMenu> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Colors.pink[50],
-          title: Text('Input Success'),
+          backgroundColor: Colors.orange[50],
+          title: Text('Input Success',
+              style: TextStyle(fontSize: 28, fontFamily: 'maaja')),
           actions: <Widget>[
             FlatButton(
-              child: Text('Ok'),
+              child: Text('Ok',
+                  style: TextStyle(fontSize: 26, fontFamily: 'maaja')),
               onPressed: () {
                 Navigator.of(context).pop();
                 navigateToAdminPage(context);
@@ -79,20 +80,20 @@ class NewMenuState extends State<NewMenu> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.pink[300],
-          title: Text('Input Data'),
+          backgroundColor: Colors.orange[300],
+          title: Text('Input Menu'),
         ),
         body: SafeArea(
             top: false,
             bottom: false,
             child: Container(
-                color: Colors.pink[50],
+                color: Colors.orange[50],
                 child: Center(
                     child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       gradient: LinearGradient(
-                          colors: [Colors.purple[100], Colors.pink[100]])),
+                          colors: [Colors.yellow[100], Colors.orange[100]])),
                   margin: EdgeInsets.all(32),
                   padding: EdgeInsets.all(24),
                   child: Form(
@@ -105,6 +106,7 @@ class NewMenuState extends State<NewMenu> {
                             hintText: 'กรุณากรอกชื่ออาหาร',
                             labelText: 'ชื่ออาหาร',
                           ),
+                          style: TextStyle(fontSize: 28, fontFamily: 'maaja'),
                           onSaved: (val) => newMenu.name = val,
                         ),
                         TextFormField(
@@ -113,6 +115,7 @@ class NewMenuState extends State<NewMenu> {
                             hintText: 'กรุณากรอกราคา',
                             labelText: 'ราคา',
                           ),
+                          style: TextStyle(fontSize: 28, fontFamily: 'maaja'),
                           keyboardType: TextInputType.number,
                           onSaved: (val) => newMenu.price = double.parse(val),
                         ),
@@ -120,25 +123,29 @@ class NewMenuState extends State<NewMenu> {
                           RaisedButton(
                             onPressed: getImage,
                             child: Icon(Icons.add_a_photo),
-                            color: Colors.pink[200],
+                            color: Colors.orange[200],
                           ),
-                          Center(
-                            child: _image == null
-                                ? Text('No image selected.')
-                                : Image.file(
-                                    _image,
-                                    width: 250,
-                                    height: 150,
-                                  ),
-                          ),
+                        ]),
+                        Row(children: <Widget>[
+                          _image == null
+                              ? Text('No image selected.',
+                                  style: TextStyle(
+                                      fontSize: 26, fontFamily: 'maaja'))
+                              : Image.file(
+                                  _image,
+                                  width: 250,
+                                  height: 150,
+                                ),
                         ]),
                         Container(
                             padding: EdgeInsets.only(),
                             child: RaisedButton(
                               child: Text('Submit',
                                   style: TextStyle(
-                                      fontSize: 18, color: Colors.white)),
-                              color: Colors.pink[200],
+                                      fontSize: 28,
+                                      color: Colors.white,
+                                      fontFamily: 'maaja')),
+                              color: Colors.orange[200],
                               onPressed: () {
                                 _onSubmit(widget.docID);
                               },
@@ -148,10 +155,4 @@ class NewMenuState extends State<NewMenu> {
                   ),
                 )))));
   }
-}
-
-navigateToAdminPage(BuildContext context) {
-  Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return AdminPage();
-  }));
 }

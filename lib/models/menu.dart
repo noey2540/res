@@ -1,8 +1,8 @@
 class Menu {
   String name;
   double price;
-  String store_id;
+  String storeId;
   List<String> imageUrl;
 
-  Menu({this.name, this.price, this.store_id, this.imageUrl});
+  Menu({this.name, this.price, this.storeId, this.imageUrl});
 }

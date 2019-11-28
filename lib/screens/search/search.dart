@@ -1,28 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import './store_menu_page.dart';
 import '../map/map.dart';
+import '../navigate.dart';
 
-class StoresPage extends StatefulWidget {
-  StoresPage({Key key, this.category}) : super(key: key);
-  final String category;
-  StoresPageState createState() => StoresPageState();
+class Search extends StatefulWidget {
+  Search({
+    Key key,
+    this.storeName,
+    this.storeCate,
+    this.storeLat,
+    this.storeLng,
+    this.hereLat,
+    this.hereLng,
+  }) : super(key: key);
+  final String storeName;
+  final String storeCate;
+  final double storeLat;
+  final double storeLng;
+  final double hereLat;
+  final double hereLng;
+
+  @override
+  SearchState createState() => SearchState();
 }
 
-class StoresPageState extends State<StoresPage> {
+class SearchState extends State<Search> {
+  static double lat;
+  static double lng;
+  static double lat2;
+  static double lng2;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.orange[300],
-          title: Text(widget.category),
+          title: Text('Restuarants'),
         ),
         body: Container(
             color: Colors.orange[50],
             child: StreamBuilder<QuerySnapshot>(
               stream: Firestore.instance
                   .collection('store')
-                  .where("store_category", isEqualTo: widget.category)
+                  .where('location', isLessThanOrEqualTo: [widget.hereLng])
+                  .limit(5)
                   .snapshots(),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -49,7 +70,7 @@ class StoresPageState extends State<StoresPage> {
                                 ListTile(
                                   title: Text(document['store_name'],
                                       style: TextStyle(
-                                          fontSize: 30,
+                                          fontSize: 28,
                                           color: Colors.black,
                                           fontFamily: 'maaja')),
                                   subtitle: Image.network(
@@ -105,10 +126,4 @@ class StoresPageState extends State<StoresPage> {
               },
             )));
   }
-}
-
-navigateToMenuPage(BuildContext context, String docID, String storeName) {
-  Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return StoreMenuPage(docID: docID, storeName: storeName);
-  }));
 }

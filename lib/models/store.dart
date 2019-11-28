@@ -1,14 +1,14 @@
 class Store {
-  String store_name;
+  String storeName;
   String description;
   String address;
-  String store_category;
+  String storeCategory;
   List<double> location;
   List<String> imageUrl;
 
   Store(
-      {this.store_name,
-      this.store_category,
+      {this.storeName,
+      this.storeCategory,
       this.description,
       this.address,
       this.location,

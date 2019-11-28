@@ -7,7 +7,7 @@ import 'package:location/location.dart';
 import '../../models/store.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../services/image_service.dart';
-import '../../admin_page.dart';
+import '../navigate.dart';
 
 class NewStore extends StatefulWidget {
   NewStore({
@@ -101,8 +101,8 @@ class NewStoreState extends State<NewStore> {
     form.save();
 
     print('Form save called, newContact is now up to date...');
-    print('Name: ${newStore.store_name}');
-    print('Name: ${newStore.store_category}');
+    print('Name: ${newStore.storeName}');
+    print('Name: ${newStore.storeCategory}');
     print(_image);
     String imgUrl = await onImageUploading(_image);
     print(imgUrl);
@@ -111,8 +111,8 @@ class NewStoreState extends State<NewStore> {
 
     if (imgUrl.isNotEmpty) {
       Firestore.instance.collection('store').document().setData({
-        'store_name': newStore.store_name,
-        'store_category': newStore.store_category,
+        'store_name': newStore.storeName,
+        'store_category': newStore.storeCategory,
         'image': [imgUrl],
         'location': [_startLocation.latitude, _startLocation.longitude]
       });
@@ -126,11 +126,13 @@ class NewStoreState extends State<NewStore> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Colors.pink[50],
-          title: Text('Input Success'),
+          backgroundColor: Colors.orange[50],
+          title: Text('Input Success',
+              style: TextStyle(fontSize: 28, fontFamily: 'maaja')),
           actions: <Widget>[
             FlatButton(
-              child: Text('Ok'),
+              child: Text('Ok',
+                  style: TextStyle(fontSize: 26, fontFamily: 'maaja')),
               onPressed: () {
                 Navigator.of(context).pop();
                 navigateToAdminPage(context);
@@ -146,20 +148,20 @@ class NewStoreState extends State<NewStore> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.pink[300],
-          title: Text('Input Data'),
+          backgroundColor: Colors.orange[300],
+          title: Text('Input Restaurant'),
         ),
         body: SafeArea(
             top: false,
             bottom: false,
             child: Container(
-              color: Colors.pink[50],
+              color: Colors.orange[50],
               child: Center(
                   child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
                     gradient: LinearGradient(
-                        colors: [Colors.purple[100], Colors.pink[100]])),
+                        colors: [Colors.yellow[100], Colors.orange[100]])),
                 margin: EdgeInsets.all(32),
                 padding: EdgeInsets.all(24),
                 child: Form(
@@ -172,18 +174,21 @@ class NewStoreState extends State<NewStore> {
                           hintText: 'กรุณากรอกชื่อร้าน',
                           labelText: 'ชื่อร้าน',
                         ),
-                        onSaved: (val) => newStore.store_name = val,
+                        style: TextStyle(fontSize: 28, fontFamily: 'maaja'),
+                        onSaved: (val) => newStore.storeName = val,
                       ),
                       Row(children: <Widget>[
                         Icon(Icons.beenhere),
-                        Text('ประเภทร้านอาหาร  '),
+                        Text('ประเภทร้านอาหาร  ',
+                            style:
+                                TextStyle(fontSize: 28, fontFamily: 'maaja')),
                         DropdownButton<String>(
                           value: dropdownValue,
                           onChanged: (String newValue) {
                             setState(() {
                               dropdownValue = newValue;
                             });
-                            newStore.store_category = newValue;
+                            newStore.storeCategory = newValue;
                           },
                           items: <String>[
                             'ปิ้งย่าง',
@@ -194,7 +199,9 @@ class NewStoreState extends State<NewStore> {
                           ].map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
-                              child: Text(value),
+                              child: Text(value,
+                                  style: TextStyle(
+                                      fontSize: 28, fontFamily: 'maaja')),
                             );
                           }).toList(),
                         ),
@@ -203,31 +210,37 @@ class NewStoreState extends State<NewStore> {
                         RaisedButton(
                           onPressed: getImage,
                           child: Icon(Icons.add_a_photo),
-                          color: Colors.pink[200],
-                        ),
-                        Center(
-                          child: _image == null
-                              ? Text('No image selected.')
-                              : Image.file(
-                                  _image,
-                                  width: 250,
-                                  height: 150,
-                                ),
+                          color: Colors.orange[200],
                         ),
                       ]),
                       Row(children: <Widget>[
+                        _image == null
+                            ? Text('No image selected.',
+                                style: TextStyle(
+                                    fontSize: 26, fontFamily: 'maaja'))
+                            : Image.file(
+                                _image,
+                                width: 250,
+                                height: 150,
+                              ),
+                      ]),
+                      Row(children: <Widget>[
                         RaisedButton(
-                            child: Text('เรียกตำแหน่งที่ตั้ง'),
-                            color: Colors.pink[200],
+                            child: Text('เรียกตำแหน่งที่ตั้ง',
+                                style: TextStyle(
+                                    fontSize: 28, fontFamily: 'maaja')),
+                            color: Colors.orange[200],
                             onPressed: () {
                               _initPlatformState();
                             }),
                       ]),
-                      Text('latitude:'),
+                      Text('latitude:',
+                          style: TextStyle(fontSize: 28, fontFamily: 'maaja')),
                       Text(_startLocation == null
                           ? '-'
                           : _startLocation.latitude.toString()),
-                      Text('longitude:'),
+                      Text('longitude:',
+                          style: TextStyle(fontSize: 28, fontFamily: 'maaja')),
                       Text(
                         _startLocation == null
                             ? '-'
@@ -238,8 +251,10 @@ class NewStoreState extends State<NewStore> {
                           child: RaisedButton(
                             child: Text('Submit',
                                 style: TextStyle(
-                                    fontSize: 18, color: Colors.white)),
-                            color: Colors.pink[200],
+                                    fontSize: 28,
+                                    color: Colors.white,
+                                    fontFamily: 'maaja')),
+                            color: Colors.orange[200],
                             onPressed: _onSubmit,
                           )),
                     ],
@@ -248,10 +263,4 @@ class NewStoreState extends State<NewStore> {
               )),
             )));
   }
-}
-
-navigateToAdminPage(BuildContext context) {
-  Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return AdminPage();
-  }));
 }
