@@ -65,7 +65,9 @@ class _AdminPageState extends State<AdminPage> {
                                 // subtitle: Image.network(document["image"][0]),
                                 onTap: () {
                                   navigateToAdminMenuPage(
-                                      context, document.documentID,document['store_name']);
+                                      context,
+                                      document.documentID,
+                                      document['store_name']);
                                 },
                               ),
                               ButtonTheme.bar(
@@ -114,8 +116,8 @@ navigateToNewStorePage(
   }));
 }
 
-navigateToAdminMenuPage(BuildContext context, String docID,String store_name) {
+navigateToAdminMenuPage(BuildContext context, String docID, String store_name) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return AdminMenuPage(docID: docID,store_name: store_name);
+    return AdminMenuPage(docID: docID, store_name: store_name);
   }));
 }

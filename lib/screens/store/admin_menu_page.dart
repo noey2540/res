@@ -4,9 +4,7 @@ import './new_menu.dart';
 import './update_menu.dart';
 
 class AdminMenuPage extends StatefulWidget {
-  AdminMenuPage({
-    Key key, this.docID,this.store_name
-  }) : super(key: key);
+  AdminMenuPage({Key key, this.docID, this.store_name}) : super(key: key);
 
   final String docID;
   final String store_name;
@@ -36,39 +34,38 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
         body: Container(
           color: Colors.pink[50],
           child: StreamBuilder<QuerySnapshot>(
-              stream: Firestore.instance
-                  .collection('menus')
-                  .where('store_id', isEqualTo: widget.docID)
-                  .snapshots(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (snapshot.hasError) return Text('Error: ${snapshot.error}');
-                switch (snapshot.connectionState) {
-                  case ConnectionState.waiting:
-                    return Text('Loading...');
-                  default:
-                    return ListView(
-                        children: snapshot.data.documents
-                            .map((DocumentSnapshot document) {
-                      // if (document['store_id'] == widget.docID) {
-                      return Center(
-                        child: Card(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16),
-                                gradient: LinearGradient(colors: [
-                                  Colors.purple[100],
-                                  Colors.pink[100]
-                                ])),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                ListTile(
-                                  title: Text(document['name']),
-                                  subtitle: Text(document['price'].toString()),
-                                  leading: Image.network(document["image"][0]),
-                                  
-                                ),
+            stream: Firestore.instance
+                .collection('menus')
+                .where('store_id', isEqualTo: widget.docID)
+                .snapshots(),
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasError) return Text('Error: ${snapshot.error}');
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting:
+                  return Text('Loading...');
+                default:
+                  return ListView(
+                      children: snapshot.data.documents
+                          .map((DocumentSnapshot document) {
+                    // if (document['store_id'] == widget.docID) {
+                    return Center(
+                      child: Card(
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                              gradient: LinearGradient(colors: [
+                                Colors.purple[100],
+                                Colors.pink[100]
+                              ])),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              ListTile(
+                                title: Text(document['name']),
+                                subtitle: Text(document['price'].toString()),
+                                leading: Image.network(document["image"][0]),
+                              ),
                               ButtonTheme.bar(
                                 // make buttons use the appropriate styles for cards
                                 child: ButtonBar(
@@ -77,7 +74,9 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
                                       child: const Text('Update'),
                                       onPressed: () {
                                         navigateToUpdateMenuPage(
-                                            context, document.documentID,document['name']);
+                                            context,
+                                            document.documentID,
+                                            document['name']);
                                       },
                                     ),
                                     FlatButton(
@@ -88,16 +87,16 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
                                   ],
                                 ),
                               ),
-                              ],
-                            ),
+                            ],
                           ),
                         ),
-                      );
-                      // }
-                    }).toList());
-                }
-              },
-            ),
+                      ),
+                    );
+                    // }
+                  }).toList());
+              }
+            },
+          ),
         ));
   }
 }
@@ -108,15 +107,14 @@ class _AdminMenuPageState extends State<AdminMenuPage> {
 //   }));
 // }
 
-navigateToNewMenuPage(
-  BuildContext context,String docID) {
+navigateToNewMenuPage(BuildContext context, String docID) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
     return NewMenu(docID: docID);
   }));
 }
 
-navigateToUpdateMenuPage(BuildContext context, String docID,String name) {
+navigateToUpdateMenuPage(BuildContext context, String docID, String name) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return UpdateMenu(docID: docID,name: name);
+    return UpdateMenu(docID: docID, name: name);
   }));
 }

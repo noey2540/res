@@ -30,12 +30,13 @@ class _LoginPageState extends State<LoginPage> {
       if (username.toLowerCase() == 'admin' &&
           password.toLowerCase() == 'admin') {
         Navigator.of(context).pop();
-                navigateToAdminPage(context);
+        navigateToAdminPage(context);
       } else {
         print('Invalid username/password');
       }
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,16 +55,16 @@ class _LoginPageState extends State<LoginPage> {
                   margin: EdgeInsets.all(32),
                   padding: EdgeInsets.all(24),
                   child: Form(
-              key: _formKey,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      buildTextFieldUser(),
-                      buildTextFieldPass(),
-                      buildButtonSignIn(),
-                    ],
-                  ))),
+                      key: _formKey,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          buildTextFieldUser(),
+                          buildTextFieldPass(),
+                          buildButtonSignIn(),
+                        ],
+                      ))),
             )));
   }
 
@@ -99,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 18, color: Colors.white)),
             onPressed: () {
-              _onLogin() ;
+              _onLogin();
             }),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16), color: Colors.pink[200]),

@@ -126,7 +126,7 @@ class NewStoreState extends State<NewStore> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor:Colors.pink[50],
+          backgroundColor: Colors.pink[50],
           title: Text('Input Success'),
           actions: <Widget>[
             FlatButton(
@@ -150,103 +150,103 @@ class NewStoreState extends State<NewStore> {
           title: Text('Input Data'),
         ),
         body: SafeArea(
-          top: false,
-          bottom: false,
-          child: Container(
-            color: Colors.pink[50],
-            child: Center(
-              child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      gradient: LinearGradient(
-                          colors: [Colors.purple[100], Colors.pink[100]])),
-                  margin: EdgeInsets.all(32),
-                  padding: EdgeInsets.all(24),
-          child: Form(
-            key: _formKey,
-            child: ListView(
-              children: <Widget>[
-                TextFormField(
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.account_balance),
-                    hintText: 'กรุณากรอกชื่อร้าน',
-                    labelText: 'ชื่อร้าน',
+            top: false,
+            bottom: false,
+            child: Container(
+              color: Colors.pink[50],
+              child: Center(
+                  child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    gradient: LinearGradient(
+                        colors: [Colors.purple[100], Colors.pink[100]])),
+                margin: EdgeInsets.all(32),
+                padding: EdgeInsets.all(24),
+                child: Form(
+                  key: _formKey,
+                  child: ListView(
+                    children: <Widget>[
+                      TextFormField(
+                        decoration: InputDecoration(
+                          icon: Icon(Icons.account_balance),
+                          hintText: 'กรุณากรอกชื่อร้าน',
+                          labelText: 'ชื่อร้าน',
+                        ),
+                        onSaved: (val) => newStore.store_name = val,
+                      ),
+                      Row(children: <Widget>[
+                        Icon(Icons.beenhere),
+                        Text('ประเภทร้านอาหาร  '),
+                        DropdownButton<String>(
+                          value: dropdownValue,
+                          onChanged: (String newValue) {
+                            setState(() {
+                              dropdownValue = newValue;
+                            });
+                            newStore.store_category = newValue;
+                          },
+                          items: <String>[
+                            'ปิ้งย่าง',
+                            'ร้านอาหาร',
+                            'ร้านส้มตำ',
+                            'ร้านกาแฟ',
+                            'ร้านน้ำชา'
+                          ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ]),
+                      Row(children: <Widget>[
+                        RaisedButton(
+                          onPressed: getImage,
+                          child: Icon(Icons.add_a_photo),
+                          color: Colors.pink[200],
+                        ),
+                        Center(
+                          child: _image == null
+                              ? Text('No image selected.')
+                              : Image.file(
+                                  _image,
+                                  width: 250,
+                                  height: 150,
+                                ),
+                        ),
+                      ]),
+                      Row(children: <Widget>[
+                        RaisedButton(
+                            child: Text('เรียกตำแหน่งที่ตั้ง'),
+                            color: Colors.pink[200],
+                            onPressed: () {
+                              _initPlatformState();
+                            }),
+                      ]),
+                      Text('latitude:'),
+                      Text(_startLocation == null
+                          ? '-'
+                          : _startLocation.latitude.toString()),
+                      Text('longitude:'),
+                      Text(
+                        _startLocation == null
+                            ? '-'
+                            : _startLocation.longitude.toString(),
+                      ),
+                      Container(
+                          padding: EdgeInsets.only(),
+                          child: RaisedButton(
+                            child: Text('Submit',
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.white)),
+                            color: Colors.pink[200],
+                            onPressed: _onSubmit,
+                          )),
+                    ],
                   ),
-                  onSaved: (val) => newStore.store_name = val,
                 ),
-                Row(children: <Widget>[
-                  Icon(Icons.beenhere),
-                  Text('ประเภทร้านอาหาร  '),
-                  DropdownButton<String>(
-                    
-                    value: dropdownValue,
-                    onChanged: (String newValue) {
-                      setState(() {
-                        dropdownValue = newValue;
-                      });
-                      newStore.store_category = newValue;
-                    },
-                    items: <String>[
-                      'ปิ้งย่าง',
-                      'ร้านอาหาร',
-                      'ร้านส้มตำ',
-                      'ร้านกาแฟ',
-                      'ร้านน้ำชา'
-                    ].map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                  ),
-                ]),
-                Row(children: <Widget>[
-                  RaisedButton(
-                    onPressed: getImage,
-                    child: Icon(Icons.add_a_photo),
-                    color: Colors.pink[200],
-                  ),
-                  Center(
-                    child: _image == null
-                        ? Text('No image selected.')
-                        : Image.file(
-                            _image,
-                            width: 250,
-                            height: 150,
-                          ),
-                  ),
-                ]),
-                Row(children: <Widget>[
-                  RaisedButton(
-                      child: Text('เรียกตำแหน่งที่ตั้ง'),
-                      color: Colors.pink[200],
-                      onPressed: () {
-                        _initPlatformState();
-                      }),
-                ]),
-                Text('latitude:'),
-                Text(_startLocation == null
-                    ? '-'
-                    : _startLocation.latitude.toString()),
-                Text('longitude:'),
-                Text(
-                  _startLocation == null
-                      ? '-'
-                      : _startLocation.longitude.toString(),
-                ),
-                Container(
-                    padding: EdgeInsets.only(),
-                    child: RaisedButton(
-                      child: Text('Submit',style: TextStyle(fontSize: 18, color: Colors.white)),
-                                 color: Colors.pink[200],
-                      onPressed: _onSubmit,
-                    )),
-              ],
-            ),
-          ),
-        )),
-        ))
-    );
+              )),
+            )));
   }
 }
 

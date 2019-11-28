@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import './login_page.dart';
 import './search_page.dart';
 
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -29,33 +28,33 @@ class MyHomePage extends StatefulWidget {
 }
 
 class MyHomePageState extends State<MyHomePage> {
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('LALLABUY'),
       ),
       body: Container(
-            color: Colors.pink[50],
-            child: Center(
-              child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      gradient: LinearGradient(
-                          colors: [Colors.purple[100], Colors.pink[100]])),
-                  margin: EdgeInsets.all(32),
-                  padding: EdgeInsets.all(24),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      buildButtonAdmin(),
-                      buildButtonSearch(),
-                    ],
-                  )),
-            )),
+          color: Colors.pink[50],
+          child: Center(
+            child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    gradient: LinearGradient(
+                        colors: [Colors.purple[100], Colors.pink[100]])),
+                margin: EdgeInsets.all(32),
+                padding: EdgeInsets.all(24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    buildButtonAdmin(),
+                    buildButtonSearch(),
+                  ],
+                )),
+          )),
     );
   }
+
   Container buildButtonAdmin() {
     return Container(
         constraints: BoxConstraints.expand(height: 50),
@@ -71,6 +70,7 @@ class MyHomePageState extends State<MyHomePage> {
         margin: EdgeInsets.only(top: 16),
         padding: EdgeInsets.all(12));
   }
+
   Container buildButtonSearch() {
     return Container(
         constraints: BoxConstraints.expand(height: 50),
@@ -87,14 +87,15 @@ class MyHomePageState extends State<MyHomePage> {
         padding: EdgeInsets.all(12));
   }
 }
-navigateToSearchPage(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return SearchPage();
-    }));
-  }
 
-  navigateToLoginPage(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return LoginPage();
-    }));
-  }
+navigateToSearchPage(BuildContext context) {
+  Navigator.push(context, MaterialPageRoute(builder: (context) {
+    return SearchPage();
+  }));
+}
+
+navigateToLoginPage(BuildContext context) {
+  Navigator.push(context, MaterialPageRoute(builder: (context) {
+    return LoginPage();
+  }));
+}

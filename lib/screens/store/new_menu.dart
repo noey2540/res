@@ -59,7 +59,7 @@ class NewMenuState extends State<NewMenu> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor:Colors.pink[50],
+          backgroundColor: Colors.pink[50],
           title: Text('Input Success'),
           actions: <Widget>[
             FlatButton(
@@ -83,68 +83,70 @@ class NewMenuState extends State<NewMenu> {
           title: Text('Input Data'),
         ),
         body: SafeArea(
-          top: false,
-          bottom: false,
-          child: Container(
-            color: Colors.pink[50],
-            child: Center(
-              child: Container(
+            top: false,
+            bottom: false,
+            child: Container(
+                color: Colors.pink[50],
+                child: Center(
+                    child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
                       gradient: LinearGradient(
                           colors: [Colors.purple[100], Colors.pink[100]])),
                   margin: EdgeInsets.all(32),
                   padding: EdgeInsets.all(24),
-          child: Form(
-            key: _formKey,
-            child: ListView(
-              children: <Widget>[
-                TextFormField(
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.account_balance),
-                    hintText: 'กรุณากรอกชื่ออาหาร',
-                    labelText: 'ชื่ออาหาร',
-                  ),
-                  onSaved: (val) => newMenu.name = val,
-                ),
-                TextFormField(
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.account_balance),
-                    hintText: 'กรุณากรอกราคา',
-                    labelText: 'ราคา',
-                  ),
-                  keyboardType: TextInputType.number,
-                  onSaved: (val) => newMenu.price = double.parse(val),
-                ),
-                Row(children: <Widget>[
-                  RaisedButton(
-                    onPressed: getImage,
-                    child: Icon(Icons.add_a_photo),
-                    color: Colors.pink[200],
-                  ),
-                  Center(
-                    child: _image == null
-                        ? Text('No image selected.')
-                        : Image.file(
-                            _image,
-                            width: 250,
-                            height: 150,
+                  child: Form(
+                    key: _formKey,
+                    child: ListView(
+                      children: <Widget>[
+                        TextFormField(
+                          decoration: InputDecoration(
+                            icon: Icon(Icons.account_balance),
+                            hintText: 'กรุณากรอกชื่ออาหาร',
+                            labelText: 'ชื่ออาหาร',
                           ),
+                          onSaved: (val) => newMenu.name = val,
+                        ),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            icon: Icon(Icons.account_balance),
+                            hintText: 'กรุณากรอกราคา',
+                            labelText: 'ราคา',
+                          ),
+                          keyboardType: TextInputType.number,
+                          onSaved: (val) => newMenu.price = double.parse(val),
+                        ),
+                        Row(children: <Widget>[
+                          RaisedButton(
+                            onPressed: getImage,
+                            child: Icon(Icons.add_a_photo),
+                            color: Colors.pink[200],
+                          ),
+                          Center(
+                            child: _image == null
+                                ? Text('No image selected.')
+                                : Image.file(
+                                    _image,
+                                    width: 250,
+                                    height: 150,
+                                  ),
+                          ),
+                        ]),
+                        Container(
+                            padding: EdgeInsets.only(),
+                            child: RaisedButton(
+                              child: Text('Submit',
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.white)),
+                              color: Colors.pink[200],
+                              onPressed: () {
+                                _onSubmit(widget.docID);
+                              },
+                            )),
+                      ],
+                    ),
                   ),
-                ]),
-                Container(
-                    padding: EdgeInsets.only(),
-                    child: RaisedButton(
-                      child: Text('Submit',style: TextStyle(fontSize: 18, color: Colors.white)),
-                                 color: Colors.pink[200],
-                      onPressed: () {
-                        _onSubmit(widget.docID);
-                      },
-                    )),
-              ],
-            ),
-          ),))
-        )));
+                )))));
   }
 }
 

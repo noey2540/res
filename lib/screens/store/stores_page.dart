@@ -51,8 +51,11 @@ class StoresPageState extends State<StoresPage> {
                                   title: Text(document['store_name'],
                                       style: TextStyle(
                                           fontSize: 20, color: Colors.black)),
-                                  subtitle: Image.network(document["image"][0],width: 300,
-                                height: 200,),
+                                  subtitle: Image.network(
+                                    document["image"][0],
+                                    width: 300,
+                                    height: 200,
+                                  ),
                                   // onTap: () {
                                   //   print(document['location'][0]);
                                   //   Navigator.push(context,
@@ -71,24 +74,30 @@ class StoresPageState extends State<StoresPage> {
                                     children: <Widget>[
                                       FlatButton(
                                         child: Icon(Icons.location_on),
-                                        
                                         onPressed: () {
-                                    print(document['location'][0]);
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return Map(
-                                          storeName: document['store_name'],
-                                          storeCate: document['store_category'],
-                                          storeLat: document['location'][0],
-                                          storeLng: document['location'][1]);
-                                    }));
-                                  },
+                                          print(document['location'][0]);
+                                          Navigator.push(context,
+                                              MaterialPageRoute(
+                                                  builder: (context) {
+                                            return Map(
+                                                storeName:
+                                                    document['store_name'],
+                                                storeCate:
+                                                    document['store_category'],
+                                                storeLat: document['location']
+                                                    [0],
+                                                storeLng: document['location']
+                                                    [1]);
+                                          }));
+                                        },
                                       ),
                                       FlatButton(
                                         child: const Text('MENU'),
                                         onPressed: () {
                                           navigateToMenuPage(
-                                              context, document.documentID, document['store_name']);
+                                              context,
+                                              document.documentID,
+                                              document['store_name']);
                                         },
                                       ),
                                     ],
@@ -106,8 +115,8 @@ class StoresPageState extends State<StoresPage> {
   }
 }
 
-navigateToMenuPage(BuildContext context, String docID,String store_name) {
+navigateToMenuPage(BuildContext context, String docID, String store_name) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return StoreMenuPage(docID: docID,store_name: store_name);
+    return StoreMenuPage(docID: docID, store_name: store_name);
   }));
 }

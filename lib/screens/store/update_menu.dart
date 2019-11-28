@@ -10,7 +10,7 @@ import 'package:flutter/services.dart';
 import './admin_menu_page.dart';
 
 class UpdateMenu extends StatefulWidget {
-  UpdateMenu({Key key, this.docID,this.name}) : super(key: key);
+  UpdateMenu({Key key, this.docID, this.name}) : super(key: key);
   final String docID;
   final String name;
   UpdateMenuState createState() => UpdateMenuState();
@@ -57,7 +57,7 @@ class UpdateMenuState extends State<UpdateMenu> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor:Colors.pink[50],
+          backgroundColor: Colors.pink[50],
           title: Text('Update Success'),
           actions: <Widget>[
             FlatButton(
@@ -93,70 +93,77 @@ class UpdateMenuState extends State<UpdateMenu> {
               return SafeArea(
                   top: false,
                   bottom: false,
-                   child: Container(
-            color: Colors.pink[50],
-            child: Center(
-              child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      gradient: LinearGradient(
-                          colors: [Colors.purple[100], Colors.pink[100]])),
-                  margin: EdgeInsets.all(32),
-                  padding: EdgeInsets.all(24),
-                  child: Form(
-                      key: _formKey,
-                      // color: Colors.green[50],
-                      child: ListView(
-                        children: <Widget>[
-                          TextFormField(
-                            initialValue: document['name'],
-                            decoration: InputDecoration(
-                              icon: Icon(Icons.fastfood),
-                              hintText: 'กรุณากรอกชื่ออาหาร',
-                              labelText: 'ชื่ออาหาร',
-                            ),
-                            onSaved: (val) => newMenu.name = val,
-                          ),
-                          TextFormField(
-                            initialValue: document['price'].toString(),
-                            decoration: InputDecoration(
-                              icon: Icon(Icons.attach_money),
-                              hintText: 'กรุณากรอกราคา',
-                              labelText: 'ราคา',
-                            ),
-                            keyboardType: TextInputType.number,
-                            onSaved: (val) => newMenu.price = double.parse(val),
-                          ),
-                          Row(children: <Widget>[
-                            RaisedButton(
-                                onPressed: getImage,
-                                child: Icon(Icons.add_a_photo),
-                                color: Colors.pink[200],),
-                          ]),
-                          Row(children: <Widget>[
-                          
-                            _image == null
-                                ? Image.network(
-                                    document["image"][0],
-                                    width: 250,
-                                    height: 150,
-                                  )
-                                : Image.file(
-                                    _image,
-                                    alignment: Alignment.center,
-                                    width: 250,
-                                    height: 150,
-                                  )
-                          ]),
-                          Container(
-                              padding: EdgeInsets.only(),
-                              child: RaisedButton(
-                                child: Text('Update',style: TextStyle(fontSize: 18, color: Colors.white)),
-                                 color: Colors.pink[200],
-                                onPressed: _onUpdate,
-                              )),
-                        ],
-                      ))))));
+                  child: Container(
+                      color: Colors.pink[50],
+                      child: Center(
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(16),
+                                  gradient: LinearGradient(colors: [
+                                    Colors.purple[100],
+                                    Colors.pink[100]
+                                  ])),
+                              margin: EdgeInsets.all(32),
+                              padding: EdgeInsets.all(24),
+                              child: Form(
+                                  key: _formKey,
+                                  // color: Colors.green[50],
+                                  child: ListView(
+                                    children: <Widget>[
+                                      TextFormField(
+                                        initialValue: document['name'],
+                                        decoration: InputDecoration(
+                                          icon: Icon(Icons.fastfood),
+                                          hintText: 'กรุณากรอกชื่ออาหาร',
+                                          labelText: 'ชื่ออาหาร',
+                                        ),
+                                        onSaved: (val) => newMenu.name = val,
+                                      ),
+                                      TextFormField(
+                                        initialValue:
+                                            document['price'].toString(),
+                                        decoration: InputDecoration(
+                                          icon: Icon(Icons.attach_money),
+                                          hintText: 'กรุณากรอกราคา',
+                                          labelText: 'ราคา',
+                                        ),
+                                        keyboardType: TextInputType.number,
+                                        onSaved: (val) =>
+                                            newMenu.price = double.parse(val),
+                                      ),
+                                      Row(children: <Widget>[
+                                        RaisedButton(
+                                          onPressed: getImage,
+                                          child: Icon(Icons.add_a_photo),
+                                          color: Colors.pink[200],
+                                        ),
+                                      ]),
+                                      Row(children: <Widget>[
+                                        _image == null
+                                            ? Image.network(
+                                                document["image"][0],
+                                                width: 250,
+                                                height: 150,
+                                              )
+                                            : Image.file(
+                                                _image,
+                                                alignment: Alignment.center,
+                                                width: 250,
+                                                height: 150,
+                                              )
+                                      ]),
+                                      Container(
+                                          padding: EdgeInsets.only(),
+                                          child: RaisedButton(
+                                            child: Text('Update',
+                                                style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: Colors.white)),
+                                            color: Colors.pink[200],
+                                            onPressed: _onUpdate,
+                                          )),
+                                    ],
+                                  ))))));
             }));
   }
 }

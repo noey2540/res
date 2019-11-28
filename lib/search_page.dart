@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import './screens/store/stores_page.dart';
 import './screens/store/stores_page.dart';
 
-
 class SearchPage extends StatefulWidget {
   SearchPage({Key key}) : super(key: key);
-
 
   @override
   SearchPageState createState() => SearchPageState();
@@ -134,10 +132,8 @@ class SearchPageState extends State<SearchPage> {
                     titleSection("จัดเต็ม ซื้อ1แถม1"),
                     titleSection("ร้านดัง ต้องสั่ง!!"),
                   ]),
-                  
             ],
           )),
-      
     );
   }
 }
