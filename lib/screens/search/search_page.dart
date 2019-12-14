@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../screens/store/stores_page.dart';
+import '../navigate.dart';
 import 'package:location/location.dart';
 import 'dart:async';
 import 'search.dart';
@@ -156,12 +156,6 @@ class SearchPageState extends State<SearchPage> {
         )
       ],
     );
-  }
-
-  navigateToStoresPage(BuildContext context, String category) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return StoresPage(category: category);
-    }));
   }
 
   @override

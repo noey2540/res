@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 import './auth/login_page.dart';
 import './search/search_page.dart';
 import './auth/admin_page.dart';
-import './store/update_store.dart';
-import './store/menu_page.dart';
-import './store/new_store.dart';
+
+import './store/stores_page.dart';
 import './store/store_menu_page.dart';
-import './store/new_menu.dart';
-import './store/update_menu.dart';
+import './store/new_store_page.dart';
+import './store/update_store_page.dart';
+
+import './store/menu/menu_page.dart';
+import './store/menu/new_menu_page.dart';
+import './store/menu/update_menu_page.dart';
 
 navigateToSearchPage(BuildContext context) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -64,5 +67,11 @@ navigateToNewMenuPage(BuildContext context, String docID) {
 navigateToUpdateMenuPage(BuildContext context, String docID, String name) {
   Navigator.push(context, MaterialPageRoute(builder: (context) {
     return UpdateMenu(docID: docID, name: name);
+  }));
+}
+
+navigateToStoresPage(BuildContext context, String category) {
+  Navigator.push(context, MaterialPageRoute(builder: (context) {
+    return StoresPage(category: category);
   }));
 }

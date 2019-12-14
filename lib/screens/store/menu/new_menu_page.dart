@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
-import '../../models/menu.dart';
+import '../../../models/menu.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../services/image_service.dart';
-import '../navigate.dart';
+import '../../../services/image_service.dart';
+import '../../navigate.dart';
 
 class NewMenu extends StatefulWidget {
   NewMenu({Key key, this.docID}) : super(key: key);

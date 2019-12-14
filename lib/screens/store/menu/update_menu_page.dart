@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../models/menu.dart';
-import '../../services/image_service.dart';
+import '../../../models/menu.dart';
+import '../../../services/image_service.dart';
 import 'package:flutter/services.dart';
-import '../navigate.dart';
+import '../../navigate.dart';
 
 class UpdateMenu extends StatefulWidget {
   UpdateMenu({Key key, this.docID, this.name}) : super(key: key);

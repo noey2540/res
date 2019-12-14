@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'navigate.dart';
 
-class MyApp extends StatelessWidget {
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,17 +15,28 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
-  @override
-  MyHomePageState createState() => MyHomePageState();
-}
-
-class MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
+    Widget buildButton(String text) {
+      return Container(
+          constraints: BoxConstraints.expand(height: 50),
+          child: FlatButton(
+              child: Text(text,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18, color: Colors.white)),
+              onPressed: () {
+                navigateToLoginPage(context);
+              }),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16), color: Colors.pink[200]),
+          margin: EdgeInsets.only(top: 16),
+          padding: EdgeInsets.all(12));
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('LALLABUY'),
@@ -50,21 +61,5 @@ class MyHomePageState extends State<MyHomePage> {
                 )),
           )),
     );
-  }
-
-  Widget buildButton(String text) {
-    return Container(
-        constraints: BoxConstraints.expand(height: 50),
-        child: FlatButton(
-            child: Text(text,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18, color: Colors.white)),
-            onPressed: () {
-              navigateToLoginPage(context);
-            }),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16), color: Colors.pink[200]),
-        margin: EdgeInsets.only(top: 16),
-        padding: EdgeInsets.all(12));
   }
 }

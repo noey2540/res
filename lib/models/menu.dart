@@ -1,4 +1,6 @@
-class Menu {
+import 'package:scoped_model/scoped_model.dart';
+
+class Menu extends Model {
   String name;
   double price;
   String storeId;

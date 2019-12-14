@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../navigate.dart';
+import '../../navigate.dart';
 
 class MenuPage extends StatefulWidget {
   MenuPage({Key key, this.docID, this.storeName}) : super(key: key);

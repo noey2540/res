@@ -65,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
             )));
   }
 
-  Container buildTextFieldUser() {
+  Widget buildTextFieldUser() {
     return Container(
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
@@ -76,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
             style: TextStyle(fontSize: 26, fontFamily: 'maaja')));
   }
 
-  Container buildTextFieldPass() {
+  Widget buildTextFieldPass() {
     return Container(
         padding: EdgeInsets.all(12),
         margin: EdgeInsets.only(top: 12),
@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
             style: TextStyle(fontSize: 26, fontFamily: 'maaja')));
   }
 
-  Container buildButtonSignIn() {
+  Widget buildButtonSignIn() {
     return Container(
         constraints: BoxConstraints.expand(height: 70),
         child: FlatButton(

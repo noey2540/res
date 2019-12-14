@@ -1,4 +1,6 @@
-class Store {
+import 'package:scoped_model/scoped_model.dart';
+
+class Store extends Model {
   String storeName;
   String description;
   String address;

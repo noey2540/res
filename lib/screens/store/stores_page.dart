@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import './store_menu_page.dart';
+import '../navigate.dart';
 import '../map/map.dart';
 
 class StoresPage extends StatefulWidget {
@@ -105,10 +105,4 @@ class StoresPageState extends State<StoresPage> {
               },
             )));
   }
-}
-
-navigateToMenuPage(BuildContext context, String docID, String storeName) {
-  Navigator.push(context, MaterialPageRoute(builder: (context) {
-    return StoreMenuPage(docID: docID, storeName: storeName);
-  }));
 }
