@@ -31,6 +31,8 @@ class NewStoreState extends State<NewStore> {
     });
   }
 
+  Store newStore = Store();
+
   LocationData _startLocation;
   LocationData _currentLocation;
 
@@ -41,8 +43,6 @@ class NewStoreState extends State<NewStore> {
   String error;
 
   bool currentWidget = true;
-
-  Store newStore = Store();
 
   @override
   void initState() {

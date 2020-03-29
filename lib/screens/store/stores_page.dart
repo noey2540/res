@@ -64,7 +64,6 @@ class StoresPageState extends State<StoresPage> {
                                       FlatButton(
                                         child: Icon(Icons.location_on),
                                         onPressed: () {
-                                          print(document['location'][0]);
                                           Navigator.push(context,
                                               MaterialPageRoute(
                                                   builder: (context) {
